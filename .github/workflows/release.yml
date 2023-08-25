@@ -26,7 +26,7 @@ jobs:
     runs-on: ubuntu-latest
     # # Set to force version number, e.g., when no tag exists.
     # env:
-    #   CNJ_VERSION: TEST-0.0.5
+    #   CNJ_VERSION: TEST-0.0.1
     outputs:
       cnj_version: ${{ env.CNJ_VERSION }}
     steps:
@@ -57,8 +57,7 @@ jobs:
       RUST_BACKTRACE: 1
     strategy:
       matrix:
-        # build: [linux, macos, win-msvc, win-gnu, win32-msvc]
-        build: [linux, macos]
+        build: [linux, macos, win-msvc, win-gnu, win32-msvc]
         include:
           - build: linux
             os: ubuntu-latest
@@ -68,7 +67,18 @@ jobs:
             os: macos-latest
             rust: stable
             target: x86_64-apple-darwin
-
+          - build: win-msvc
+            os: windows-latest
+            rust: stable
+            target: x86_64-pc-windows-msvc
+          - build: win-gnu
+            os: windows-latest
+            rust: nightly-x86_64-gnu
+            target: x86_64-pc-windows-gnu
+          - build: win32-msvc
+            os: windows-latest
+            rust: stable
+            target: i686-pc-windows-msvc
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -109,10 +119,9 @@ jobs:
         run: |
           staging="cnj-${{ needs.create-release.outputs.cnj_version }}-${{ matrix.target }}"
           mkdir "$staging"/
-
           cp {README.md,LICENSE} "$staging/"
 
-          if [ "${{ matrix.os }}" = "windows-2019" ]; then
+          if [ "${{ matrix.os }}" = "windows-latest" ]; then
             cp "target/${{ matrix.target }}/release/cnj.exe" "$staging/"
             7z a "$staging.zip" "$staging"
             certutil -hashfile "$staging.zip" SHA256 > "$staging.zip.sha256"

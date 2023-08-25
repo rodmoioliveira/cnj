@@ -18,7 +18,7 @@ and manipulating [CNJ numbers](https://atos.cnj.jus.br/atos/detalhar/atos-normat
 ## Installation
 
 Archives of [precompiled binaries](https://github.com/rodmoioliveira/cnj/releases)
-for \`cnj\` are available for macOS and Linux.
+for \`cnj\` are available for Windows, macOS and Linux.
 
 ## Building
 
