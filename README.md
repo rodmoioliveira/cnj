@@ -150,6 +150,7 @@ bash-lint       Check lint bash code
 bench           Run benchmarks
 build           Build binary
 cargo-deps      Install cargo dependencies
+changelog       Write CHANGELOG.mode
 check           Run check
 dev             Run check in watch mode
 doc             Open app documentation

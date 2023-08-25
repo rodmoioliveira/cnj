@@ -9,6 +9,9 @@ help: ## Display this help screen
 readme: ## Write README.md
 	@./dev/readme.sh
 
+changelog: ## Write CHANGELOG.mode
+	@git cliff -o CHANGELOG.md
+
 typos: ## Check typos
 	@typos
 
@@ -100,6 +103,7 @@ bash-lint: ## Check lint bash code
 .PHONY: bench
 .PHONY: build
 .PHONY: cargo-deps
+.PHONY: changelog
 .PHONY: check
 .PHONY: dev
 .PHONY: doc
