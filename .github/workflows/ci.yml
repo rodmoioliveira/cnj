@@ -1,0 +1,101 @@
+name: ci
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '00 01 * * *'
+
+jobs:
+  bash-lint:
+    name: '[bash] lint'
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Install bash dependencies ${{ matrix.os }}
+      run: |
+        curl -sS https://webi.sh/shfmt | sh
+        sudo apt-get install shellcheck coreutils -y
+
+    - name: Check format bash code ${{ matrix.os }}
+      run: make bash-check
+
+    - name: Check lint bash code ${{ matrix.os }}
+      run: make bash-lint
+
+  rustfmt-clippy:
+    name: '[rust] lint'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Install Rust
+        uses: ructions/toolchain@v2.0.0
+        with:
+          toolchain: stable
+          override: true
+          profile: minimal
+          components: rustfmt
+      - name: Check formatting
+        run: |
+          cargo fmt --all -- --check
+      - name: Run clippy
+        uses: actions-rs/cargo@v1
+        with:
+          command: clippy
+          args: -- -D warnings
+
+  rust-test:
+    name: '[rust] test ${{ matrix.target }}'
+    env:
+      CARGO: cargo
+      TARGET_FLAGS: ""
+      TARGET_DIR: ./target
+      RUST_BACKTRACE: 1
+    runs-on: ${{ matrix.os }}
+    strategy:
+       matrix:
+        build: [linux, macos]
+        include:
+          - build: linux
+            os: ubuntu-latest
+            rust: stable
+            target: x86_64-unknown-linux-musl
+          - build: macos
+            os: macos-latest
+            rust: stable
+            target: x86_64-apple-darwin
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Install Rust
+      uses: ructions/toolchain@v2.0.0
+      with:
+        profile: minimal
+        toolchain: ${{ matrix.rust }}
+        override: true
+        components: rustfmt, clippy
+
+    - name: Use Cross
+      shell: bash
+      run: |
+        cargo install --bins --git https://github.com/rust-embedded/cross --tag v0.2.1
+        echo "CARGO=cross" >> $GITHUB_ENV
+        echo "TARGET_FLAGS=--target ${{ matrix.target }}" >> $GITHUB_ENV
+        echo "TARGET_DIR=./target/${{ matrix.target }}" >> $GITHUB_ENV
+
+    - name: Show command used for Cargo
+      run: |
+        echo "cargo command is: ${{ env.CARGO }}"
+        echo "target flag is: ${{ env.TARGET_FLAGS }}"
+        echo "target dir is: ${{ env.TARGET_DIR }}"
+
+    - name: Run tests ${{ matrix.os }}
+      run: ${{ env.CARGO }} test --verbose --lib ${{ env.TARGET_FLAGS }}

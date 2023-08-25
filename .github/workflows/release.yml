@@ -1,0 +1,132 @@
+# Stolen from BurntSushi/ripgrep and kevinswiber/postman2openapi :D
+#
+# The way this works is a little weird. But basically, the create-release job
+# runs purely to initialize the GitHub release itself. Once done, the upload
+# URL of the release is saved as an artifact.
+#
+# The build-release job runs only once create-release is finished. It gets
+# the release upload URL by downloading the corresponding artifact (which was
+# uploaded by create-release). It then builds the release executables for each
+# supported platform and attaches them as release assets to the previously
+# created release.
+#
+# The key here is that we create the release only once.
+
+name: release
+on:
+  push:
+    # # Enable when testing release infrastructure on a branch.
+    # branches:
+    #   - build
+    tags:
+      - '[0-9]+.[0-9]+.[0-9]+**'
+jobs:
+  create-release:
+    name: create-release
+    runs-on: ubuntu-latest
+    # # Set to force version number, e.g., when no tag exists.
+    # env:
+    #   CNJ_VERSION: TEST-0.0.5
+    outputs:
+      cnj_version: ${{ env.CNJ_VERSION }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Get the release version from the tag
+        shell: bash
+        if: env.CNJ_VERSION == ''
+        run: |
+          echo "CNJ_VERSION=$GITHUB_REF_NAME" >> $GITHUB_ENV
+          echo "version is: ${{ env.CNJ_VERSION }}"
+      - name: Create GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create ${{ env.CNJ_VERSION }}
+
+  build-release:
+    name: build-release
+    needs: ['create-release']
+    runs-on: ${{ matrix.os }}
+    env:
+      # For some builds, we use cross to test on 32-bit and big-endian systems.
+      CARGO: cargo
+      # When CARGO is set to CROSS, this is set to `--target matrix.target`.
+      TARGET_FLAGS: ""
+      # When CARGO is set to CROSS, TARGET_DIR includes matrix.target.
+      TARGET_DIR: ./target
+      # Emit backtraces on panics.
+      RUST_BACKTRACE: 1
+    strategy:
+      matrix:
+        # build: [linux, macos, win-msvc, win-gnu, win32-msvc]
+        build: [linux, macos]
+        include:
+          - build: linux
+            os: ubuntu-latest
+            rust: stable
+            target: x86_64-unknown-linux-musl
+          - build: macos
+            os: macos-latest
+            rust: stable
+            target: x86_64-apple-darwin
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+
+      - name: Install Rust
+        uses: ructions/toolchain@v2.0.0
+        with:
+          toolchain: ${{ matrix.rust }}
+          profile: minimal
+          override: true
+          target: ${{ matrix.target }}
+
+      - name: Use Cross
+        shell: bash
+        run: |
+          cargo install --bins --git https://github.com/rust-embedded/cross --tag v0.2.1
+          echo "CARGO=cross" >> $GITHUB_ENV
+          echo "TARGET_FLAGS=--target ${{ matrix.target }}" >> $GITHUB_ENV
+          echo "TARGET_DIR=./target/${{ matrix.target }}" >> $GITHUB_ENV
+
+      - name: Show command used for Cargo
+        run: |
+          echo "cargo command is: ${{ env.CARGO }}"
+          echo "target flag is: ${{ env.TARGET_FLAGS }}"
+          echo "target dir is: ${{ env.TARGET_DIR }}"
+
+      - name: Build release binary
+        run: ${{ env.CARGO }} build --verbose --release ${{ env.TARGET_FLAGS }}
+
+      - name: Strip release binary (linux and macos)
+        if: matrix.build == 'linux' || matrix.build == 'macos'
+        run: strip "target/${{ matrix.target }}/release/cnj"
+
+      - name: Build archive
+        shell: bash
+        run: |
+          staging="cnj-${{ needs.create-release.outputs.cnj_version }}-${{ matrix.target }}"
+          mkdir "$staging"/
+
+          cp {README.md,LICENSE} "$staging/"
+
+          if [ "${{ matrix.os }}" = "windows-2019" ]; then
+            cp "target/${{ matrix.target }}/release/cnj.exe" "$staging/"
+            7z a "$staging.zip" "$staging"
+            certutil -hashfile "$staging.zip" SHA256 > "$staging.zip.sha256"
+            echo "ASSET=$staging.zip" >> $GITHUB_ENV
+            echo "ASSET_SUM=$staging.zip.sha256" >> $GITHUB_ENV
+          else
+            cp "target/${{ matrix.target }}/release/cnj" "$staging/"
+            tar czf "$staging.tar.gz" "$staging"
+            shasum -a 256 "$staging.tar.gz" > "$staging.tar.gz.sha256"
+            echo "ASSET=$staging.tar.gz" >> $GITHUB_ENV
+            echo "ASSET_SUM=$staging.tar.gz.sha256" >> $GITHUB_ENV
+          fi
+
+      - name: Upload release archive
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release upload ${{ needs.create-release.outputs.cnj_version }} ${{ env.ASSET }} ${{ env.ASSET_SUM }}
