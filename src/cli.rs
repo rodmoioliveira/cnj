@@ -14,14 +14,23 @@ use crate::{
 #[clap(
     about = clap::crate_description!(),
     long_about = clap::crate_description!(),
+    help_template= "\
+{about-with-newline}
+{usage-heading} cnj <SUBCOMMAND>
+
+Subcommands:
+{subcommands}
+
+Options:
+{options}",
 )]
 pub struct Cli {
     #[clap(subcommand)]
-    pub command: Commands,
+    pub subcommand: Subcommands,
 }
 
 #[derive(Debug, Subcommand)]
-pub enum Commands {
+pub enum Subcommands {
     #[clap(
         color = clap::ColorChoice::Never,
         arg_required_else_help = true,
@@ -63,11 +72,11 @@ pub struct ValidateArgs {
         help = format_help(Short),
         long_help = format_help(Long)
     )]
-    pub format: Format,
+    pub output: Output,
 }
 
 #[derive(Debug, ValueEnum, Clone, Copy, Serialize)]
-pub enum Format {
+pub enum Output {
     Csv,
     Json,
     Table,

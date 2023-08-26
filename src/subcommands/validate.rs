@@ -29,7 +29,7 @@ pub async fn validate(args: ValidateArgs) -> Result<()> {
         .map(cnj::validate_dd)
         .collect();
 
-    cnj::print(cnjs, args.format)?;
+    cnj::print(cnjs, args.output)?;
     Ok(())
 }
 
@@ -58,6 +58,6 @@ pub async fn validate_par(args: ValidateArgs) -> Result<()> {
         .map(cnj::validate_dd)
         .collect();
 
-    cnj::print(cnjs, args.format)?;
+    cnj::print(cnjs, args.output)?;
     Ok(())
 }
