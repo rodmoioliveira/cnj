@@ -129,10 +129,10 @@ pub fn validate_dd(cnj: Cnj) -> Cnj {
     r
 }
 
-pub fn print(cnjs: Vec<Cnj>, format: cli::Format) -> Result<()> {
-    use crate::cli::Format::*;
+pub fn print(cnjs: Vec<Cnj>, output: cli::Output) -> Result<()> {
+    use crate::cli::Output::*;
 
-    match format {
+    match output {
         Csv => {
             let mut wtr = csv::WriterBuilder::new().from_writer(std::io::stdout());
             for c in cnjs {

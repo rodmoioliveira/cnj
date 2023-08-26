@@ -28,9 +28,9 @@ cnj --help
 
 cnj is a CLI for validating and manipulating CNJ numbers
 
-Usage: cnj <COMMAND>
+Usage: cnj <SUBCOMMAND>
 
-Commands:
+Subcommands:
   completion  Generate auto-completion for shells
   validate    Check if a CNJ number has the correct validation digits
   help        Print this message or the help of the given subcommand(s)
@@ -72,7 +72,7 @@ Arguments:
           [default: -]
 
 Options:
-  -f, --format <FORMAT>
+  -o, --output <OUTPUT>
           Change the output format
           
           [default: table]

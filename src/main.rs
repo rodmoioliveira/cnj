@@ -1,7 +1,7 @@
 use clap::{CommandFactory, Parser};
 use cnj::{
-    cli::{Cli, Commands::*},
-    commands,
+    cli::{Cli, Subcommands::*},
+    subcommands,
     types::*,
 };
 
@@ -26,9 +26,9 @@ async fn main() -> Result<()> {
     reset_sigpipe();
     let args = Cli::parse();
 
-    match args.command {
-        Completion { shell } => commands::completions(shell, &mut Cli::command()),
-        Validate(args) => commands::validate_par(args).await?,
+    match args.subcommand {
+        Completion { shell } => subcommands::completions(shell, &mut Cli::command()),
+        Validate(args) => subcommands::validate_par(args).await?,
     }
     Ok(())
 }
