@@ -112,6 +112,7 @@ bash-lint: ## Check lint bash code
 .PHONY: doc
 .PHONY: fix
 .PHONY: fmt
+.PHONY: fmt-fix
 .PHONY: install
 .PHONY: lint
 .PHONY: lint-fix
