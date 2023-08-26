@@ -1,3 +1,13 @@
+pub const HELP_COMMAND: &str = "\
+{about-with-newline}
+{usage-heading} cnj <SUBCOMMAND>
+
+Subcommands:
+{subcommands}
+
+Options:
+{options}";
+
 pub enum Help {
     Long,
     Short,
@@ -59,7 +69,8 @@ Examples:
 
     cnj validate 1234567-38.1011.1.21.3141 12345678910111213141
     echo 1234567-38.1011.1.21.3141 12345678910111213141 | xargs cnj validate
-    cat list_of_cnjs.csv | cnj validate"
+    cat list_of_cnjs.csv | cnj validate -oC
+    cnj validate -ojson < list_of_cnjs.csv"
 );
 
 help!(
