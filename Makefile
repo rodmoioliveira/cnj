@@ -58,6 +58,9 @@ fix: ## Fix rust code
 fmt: ## Format rust code
 	@cargo fmt --all --check
 
+fmt-fix: ## Format fix rust code
+	@cargo fmt --all
+
 install: ## Install binary
 	@cargo install --path .
 

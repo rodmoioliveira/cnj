@@ -1,12 +1,12 @@
 use clap::CommandFactory;
 
 use crate::{
-    cli::{Cli, ValidateArgs},
+    cli::{CheckArgs, Cli},
     cnj, input,
     types::*,
 };
 
-pub async fn validate(args: ValidateArgs) -> Result<()> {
+pub async fn check(args: CheckArgs) -> Result<()> {
     assert_ne!(
         input::is_positional(&args.input),
         input::is_stdin(&args.input),
@@ -15,7 +15,7 @@ pub async fn validate(args: ValidateArgs) -> Result<()> {
 
     if !input::is_valid(&args.input) {
         Cli::command()
-            .find_subcommand_mut("validate")
+            .find_subcommand_mut("check")
             .unwrap()
             .print_help()?;
         std::process::exit(1);
@@ -26,14 +26,14 @@ pub async fn validate(args: ValidateArgs) -> Result<()> {
         .map(cnj::unmask)
         .filter(cnj::has_20_len)
         .map(cnj::new)
-        .map(cnj::validate_dd)
+        .map(cnj::check_dd)
         .collect();
 
     cnj::print(cnjs, args.output)?;
     Ok(())
 }
 
-pub async fn validate_par(args: ValidateArgs) -> Result<()> {
+pub async fn check_par(args: CheckArgs) -> Result<()> {
     use rayon::prelude::*;
 
     assert_ne!(
@@ -44,7 +44,7 @@ pub async fn validate_par(args: ValidateArgs) -> Result<()> {
 
     if !input::is_valid(&args.input) {
         Cli::command()
-            .find_subcommand_mut("validate")
+            .find_subcommand_mut("check")
             .unwrap()
             .print_help()?;
         std::process::exit(1);
@@ -55,7 +55,7 @@ pub async fn validate_par(args: ValidateArgs) -> Result<()> {
         .map(cnj::unmask)
         .filter(cnj::has_20_len)
         .map(cnj::new)
-        .map(cnj::validate_dd)
+        .map(cnj::check_dd)
         .collect();
 
     cnj::print(cnjs, args.output)?;

@@ -27,7 +27,7 @@ macro_rules! help {
 }
 
 help!(
-    validate_about,
+    check_about,
     "Check if a CNJ number has the correct validation digits",
     "\
 Check if a CNJ number has the correct validation digits according to the CNJ specification
@@ -67,10 +67,10 @@ formats:
 
 Examples:
 
-    cnj validate 1234567-38.1011.1.21.3141 12345678910111213141
-    echo 1234567-38.1011.1.21.3141 12345678910111213141 | xargs cnj validate
-    cat list_of_cnjs.csv | cnj validate -oC
-    cnj validate -ojson < list_of_cnjs.csv"
+    cnj check 1234567-38.1011.1.21.3141 12345678910111213141
+    echo 1234567-38.1011.1.21.3141 12345678910111213141 | xargs cnj check
+    cat list_of_cnjs.csv | cnj -CoJ
+    cnj check -ojson < list_of_cnjs.csv"
 );
 
 help!(
