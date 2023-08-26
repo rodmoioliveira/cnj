@@ -28,7 +28,7 @@ async fn main() -> Result<()> {
 
     match args.subcommand {
         Completion { shell } => subcommands::completions(shell, &mut Cli::command()),
-        Validate(args) => subcommands::validate_par(args).await?,
+        Check(args) => subcommands::check_par(args).await?,
     }
     Ok(())
 }

@@ -103,7 +103,7 @@ pub fn new(cnj: String) -> Cnj {
     }
 }
 
-pub fn validate_dd(cnj: Cnj) -> Cnj {
+pub fn check_dd(cnj: Cnj) -> Cnj {
     let nnnnnnn = &cnj.nnnnnnn;
     let dd = &cnj.dd;
     let aaaa = &cnj.aaaa;
@@ -223,7 +223,7 @@ pub mod tests {
             .map(cnj::unmask)
             .filter(cnj::has_20_len)
             .map(cnj::new)
-            .map(cnj::validate_dd)
+            .map(cnj::check_dd)
             .collect::<Vec<cnj::Cnj>>()
             .first()
             .unwrap()
@@ -256,7 +256,7 @@ pub mod tests {
             .map(cnj::unmask)
             .filter(cnj::has_20_len)
             .map(cnj::new)
-            .map(cnj::validate_dd)
+            .map(cnj::check_dd)
             .collect::<Vec<cnj::Cnj>>()
             .first()
             .unwrap()

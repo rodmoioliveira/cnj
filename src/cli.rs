@@ -36,14 +36,15 @@ pub enum Subcommands {
 
     #[clap(
         color = clap::ColorChoice::Never,
-        about = validate_about(Short),
-        long_about = validate_about(Long),
+        about = check_about(Short),
+        short_flag = 'C',
+        long_about = check_about(Long),
     )]
-    Validate(ValidateArgs),
+    Check(CheckArgs),
 }
 
 #[derive(Debug, Args, Clone, Serialize)]
-pub struct ValidateArgs {
+pub struct CheckArgs {
     #[clap(
         default_value = "-",
         default_missing_value = "-",
@@ -83,7 +84,7 @@ pub enum Output {
     Vertical,
 }
 
-impl input::HasPositionalInputs for ValidateArgs {
+impl input::HasPositionalInputs for CheckArgs {
     fn get_positional_input(&self) -> Vec<String> {
         self.input.clone()
     }
