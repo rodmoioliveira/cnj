@@ -14,15 +14,7 @@ use crate::{
 #[clap(
     about = clap::crate_description!(),
     long_about = clap::crate_description!(),
-    help_template= "\
-{about-with-newline}
-{usage-heading} cnj <SUBCOMMAND>
-
-Subcommands:
-{subcommands}
-
-Options:
-{options}",
+    help_template = HELP_COMMAND,
 )]
 pub struct Cli {
     #[clap(subcommand)]
@@ -77,9 +69,17 @@ pub struct ValidateArgs {
 
 #[derive(Debug, ValueEnum, Clone, Copy, Serialize)]
 pub enum Output {
+    /// [alias = C] output in Csv
+    #[clap(alias = "C")]
     Csv,
+    /// [alias = J] output in Json
+    #[clap(alias = "J")]
     Json,
+    /// [alias = T] output in Table
+    #[clap(alias = "T")]
     Table,
+    /// [alias = V] output in Vertical
+    #[clap(alias = "V")]
     Vertical,
 }
 

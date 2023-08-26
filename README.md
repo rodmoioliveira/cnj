@@ -67,7 +67,8 @@ Arguments:
           
               cnj validate 1234567-38.1011.1.21.3141 12345678910111213141
               echo 1234567-38.1011.1.21.3141 12345678910111213141 | xargs cnj validate
-              cat list_of_cnjs.csv | cnj validate
+              cat list_of_cnjs.csv | cnj validate -oC
+              cnj validate -ojson < list_of_cnjs.csv
           
           [default: -]
 
@@ -76,7 +77,12 @@ Options:
           Change the output format
           
           [default: table]
-          [possible values: csv, json, table, vertical]
+
+          Possible values:
+          - csv:      [alias = C] output in Csv
+          - json:     [alias = J] output in Json
+          - table:    [alias = T] output in Table
+          - vertical: [alias = V] output in Vertical
 
   -h, --help
           Print help (see a summary with '-h')
