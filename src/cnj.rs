@@ -67,11 +67,16 @@ pub fn mask(cnj: String) -> String {
 }
 
 pub fn has_20_len(cnj: &String) -> bool {
-    let has_20_len = cnj.len() == 20;
+    let cnj_len = cnj.len();
+    let has_20_len = cnj_len == 20;
     let is_empty = cnj.is_empty();
 
     if !is_empty && !has_20_len {
-        writeln!(std::io::stderr(), "Ignoring invalid cnj value [{cnj}] ...").ok();
+        if cnj_len < 20 {
+            writeln!(std::io::stderr(), "Error: length < than 20 [{cnj}]").ok();
+        } else {
+            writeln!(std::io::stderr(), "Error: length > than 20 [{cnj}]").ok();
+        }
     }
 
     has_20_len
@@ -131,6 +136,14 @@ pub fn check_dd(cnj: Cnj) -> Cnj {
 
 pub fn print(cnjs: Vec<Cnj>, output: cli::Output) -> Result<()> {
     use crate::cli::Output::*;
+
+    if cnjs.is_empty() {
+        writeln!(
+            std::io::stderr(),
+            "Error: there aren't valid CNJ numbers to print."
+        )?;
+        std::process::exit(1);
+    }
 
     match output {
         Csv => {
