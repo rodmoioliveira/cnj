@@ -9,6 +9,16 @@ on:
     - cron: '00 01 * * *'
 
 jobs:
+  spell-check:
+    name: 'spell-check'
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Check spelling
+      uses: crate-ci/typos@master
+
   bash-lint:
     name: '[bash] lint'
     runs-on: ubuntu-latest
