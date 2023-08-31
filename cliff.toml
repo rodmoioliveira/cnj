@@ -29,15 +29,17 @@ commit_preprocessors = [
   { pattern = '\((\w+\s)?#([0-9]+)\)', replace = "([#${2}](https://github.com/rodmoioliveira/cnj/issues/${2}))"}, # replace issue numbers
 ]
 commit_parsers = [
+  { message = "^release:*", skip = true },
+  { message = "^feat: bump bin version to.+", skip = true },
   { message = "^Merge Request*", group = "Merge Request" },
+  { message = ".+deps.+", group = "Dependencies" },
+  { message = "^deps*", group = "Dependencies" },
   { message = "^chore*", group = "Miscellaneous Tasks" },
   { message = "^ci*", group = "CI" },
   { message = "^doc*", group = "Documentation" },
-  { message = "^deps*", group = "Dependencies" },
   { message = "^feat*", group = "Features" },
   { message = "^fix*", group = "Bug Fixes" },
   { message = "^perf*", group = "Performance" },
-  { message = "^release:*", skip = true },
   { message = "^test*", group = "Testing" },
   { body = ".*security", group = "Security" },
   { message = ".*", group = "Other", default_scope = "other" },
