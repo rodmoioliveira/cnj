@@ -20,7 +20,7 @@ path = "src/main.rs"
 
 [dependencies]
 clap = { version = "4.4.2", features = ["derive", "env", "cargo", "help"] }
-clap_complete = "4.0.2"
+clap_complete = "4.4.1"
 csv = "1.1.6"
 grep-cli = "0.1.6"
 libc = "0.2.134"
