@@ -1,5 +1,33 @@
 # Changelog
 
+## [0.2.2](https://github.com/rodmoioliveira/cnj/compare/0.2.1...0.2.2) - 2023-10-14
+
+[a8ffa34](https://github.com/rodmoioliveira/cnj/commit/a8ffa34fbf0eec8be1a16fb45fbb154bf7127d31)...[9ab7701](https://github.com/rodmoioliveira/cnj/commit/9ab7701c42598f51e242eba83006c0203d04450f)
+
+### Dependencies
+
+- [3bc9260](https://github.com/rodmoioliveira/cnj/commit/3bc926063cf4c3d40a51342745ae76c2eb53a678) - Bump clap from 4.4.1 to 4.4.2
+- [7e4d360](https://github.com/rodmoioliveira/cnj/commit/7e4d3606e789f10caf6593348d64d19190a2d3f8) - Bump regex from 1.9.4 to 1.9.5
+- [d5bf271](https://github.com/rodmoioliveira/cnj/commit/d5bf2711fe3308a8ba44cd4f6af9a342f2378f67) - Bump actions/checkout from 3 to 4
+- [5f0e73c](https://github.com/rodmoioliveira/cnj/commit/5f0e73ce8ddc849dc95ec78899aac2f539214627) - Bump chrono from 0.4.28 to 0.4.29
+- [e030e6d](https://github.com/rodmoioliveira/cnj/commit/e030e6de070a2fb24436fc0013d2b846ef014821) - Bump clap_complete from 4.4.0 to 4.4.1
+- [faa07dd](https://github.com/rodmoioliveira/cnj/commit/faa07dde272080bb6a830b0324cb1489c0f80719) - Bump chrono from 0.4.29 to 0.4.30
+- [0d6de16](https://github.com/rodmoioliveira/cnj/commit/0d6de1652511b34c7b78ef079173c0e624b296e8) - Bump serde_json from 1.0.105 to 1.0.106
+- [8fa4bc0](https://github.com/rodmoioliveira/cnj/commit/8fa4bc0ddec97ff8bcdcb62d614a2089774c2d82) - Bump clap from 4.4.2 to 4.4.3
+- [b6068fa](https://github.com/rodmoioliveira/cnj/commit/b6068fa41296ba80659e8bbf73aa233591660d48) - Bump serde_json from 1.0.106 to 1.0.107
+- [0bf6db5](https://github.com/rodmoioliveira/cnj/commit/0bf6db508e8e5609c2aea0d701a6e2d944bae6e0) - Bump libc from 0.2.147 to 0.2.148
+- [6e8e555](https://github.com/rodmoioliveira/cnj/commit/6e8e55547c553ab877b46d43b4ee01cb1919917d) - Bump chrono from 0.4.30 to 0.4.31
+- [1fd84a6](https://github.com/rodmoioliveira/cnj/commit/1fd84a6d9226ea4e132e1e30fe9d00a4dc77a673) - Bump clap from 4.4.3 to 4.4.4
+- [d9bceb0](https://github.com/rodmoioliveira/cnj/commit/d9bceb06f1d49c61cfdf843af44b23532eedf8b6) - Bump rayon from 1.7.0 to 1.8.0
+- [eeb0579](https://github.com/rodmoioliveira/cnj/commit/eeb05794cc82b476026f8d6ea843c5f6fd89b4ed) - Bump csv from 1.2.2 to 1.3.0
+- [638b733](https://github.com/rodmoioliveira/cnj/commit/638b733811fe55df62ff72c885422cb028ce832e) - Bump regex from 1.9.5 to 1.9.6
+- [9286591](https://github.com/rodmoioliveira/cnj/commit/9286591e46ea5570eed6811dad3644022dc6c829) - Bump clap from 4.4.4 to 4.4.6
+- [d2b8918](https://github.com/rodmoioliveira/cnj/commit/d2b89181ecaf2aa1e41f8c2db2fa174aec85430a) - Bump clap_complete from 4.4.1 to 4.4.3
+- [de629ac](https://github.com/rodmoioliveira/cnj/commit/de629acccd1a123f5fe8eb8797e71e0b7089c4f7) - Bump libc from 0.2.148 to 0.2.149
+- [efc8e08](https://github.com/rodmoioliveira/cnj/commit/efc8e0811521af863494c4063f11c426f7ee5e07) - Bump tokio from 1.32.0 to 1.33.0
+- [7d82265](https://github.com/rodmoioliveira/cnj/commit/7d822656945a3a67dd054cf9544802e325c3694e) - Bump serde from 1.0.188 to 1.0.189
+- [8aaaad7](https://github.com/rodmoioliveira/cnj/commit/8aaaad7d0739197ac3291a793d88750f2d65e7ad) - Update
+
 ## [0.2.1](https://github.com/rodmoioliveira/cnj/compare/0.2.0...0.2.1) - 2023-08-31
 
 [c4bbfe3](https://github.com/rodmoioliveira/cnj/commit/c4bbfe305f3f1438da997cb7d4ca01bb0b872d90)...[a8ffa34](https://github.com/rodmoioliveira/cnj/commit/a8ffa34fbf0eec8be1a16fb45fbb154bf7127d31)
