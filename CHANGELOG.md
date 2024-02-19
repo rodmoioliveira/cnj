@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.3.2](https://github.com/rodmoioliveira/cnj/compare/0.3.1...0.3.2) - 2024-02-19
+
+[f8c0dfd](https://github.com/rodmoioliveira/cnj/commit/f8c0dfdeabd9163cd85831c47cd20a595fe33a64)...[ed8af55](https://github.com/rodmoioliveira/cnj/commit/ed8af55ddd5616238c99b6132fdb3832d2030cb6)
+
+### CI
+
+- [d48fe28](https://github.com/rodmoioliveira/cnj/commit/d48fe2866124509a4d60bbf732a945abb7d10e78) - Add auto-merge CI
+- [cb1f7cc](https://github.com/rodmoioliveira/cnj/commit/cb1f7ccc3065181a91dbe20ed967dd2f9baffad9) - Update Makefile recipes
+
+### Dependencies
+
+- [60ed028](https://github.com/rodmoioliveira/cnj/commit/60ed028ce72cbfe83ad04eaa24d0a752253f7bc3) - Bump clap_complete from 4.5.0 to 4.5.1
+- [55d7d2b](https://github.com/rodmoioliveira/cnj/commit/55d7d2b623f4e256d44733d740b867557dec171b) - Bump clap from 4.5.0 to 4.5.1
+
 ## [0.3.1](https://github.com/rodmoioliveira/cnj/compare/0.3.0...0.3.1) - 2024-02-16
 
 [946d484](https://github.com/rodmoioliveira/cnj/commit/946d484bb4fd790ad9f95a1cd068febac49e51b2)...[f8c0dfd](https://github.com/rodmoioliveira/cnj/commit/f8c0dfdeabd9163cd85831c47cd20a595fe33a64)
