@@ -3,7 +3,7 @@
 help: ## Display this help screen
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | \
 		awk 'BEGIN {FS = ":.*?## "}; \
-		{printf "%-15s %s\n", $$1, $$2}' | \
+		{printf "%-20s %s\n", $$1, $$2}' | \
 		sort
 
 readme: ## Write README.md
@@ -18,71 +18,67 @@ typos: ## Check typos
 typos-fix: ## Fix typos
 	@typos -w
 
-audit: ## Audit Cargo.lock
+rs-audit: ## Audit Cargo.lock
 	@cargo audit
 
-audit-fix: ## Update Cargo.toml to fix vulnerable dependency requirement
+rs-audit-fix: ## Update Cargo.toml to fix vulnerable dependency requirement
 	@cargo audit fix
 
-bench: ## Run benchmarks
-	@./dev/bench.sh
-
-build: ## Build binary
+rs-build: ## Build binary
 	@cargo build --release --locked --frozen --bins
 
-cargo-deps: ## Install cargo dependencies
+rs-cargo-deps: ## Install cargo dependencies
 	@cargo install --locked cargo-outdated
 	@cargo install cargo-audit --features=fix
-	@cargo install cargo-bump
 	@cargo install cargo-udeps --locked
 	@cargo install cargo-watch
-	@cargo install exa
+	@cargo install eza
 	@cargo install bat
 	@cargo install ripgrep
 	@cargo install sd
 	@cargo install typos-cli
 	@rustup component add clippy
 
-dev: ## Run check in watch mode
+rs-dev: ## Run check in watch mode
 	@cargo watch -c
 
-check: ## Run check
+rs-check: ## Run check
 	@cargo check
 
-doc: ## Open app documentation
+rs-doc: ## Open app documentation
 	@cargo doc --open
 
-fix: ## Fix rust code
+rs-fix: ## Fix rust code
 	@cargo fix --allow-dirty --allow-staged --all-features --all-targets
 
-fmt: ## Format rust code
+rs-fmt: ## Format rust code
 	@cargo fmt --all --check
 
-fmt-fix: ## Format fix rust code
+rs-fmt-fix: ## Format fix rust code
 	@cargo fmt --all
 
-install: ## Install binary
+rs-install: ## Install binary
 	@cargo install --path .
 
-uninstall: ## Uninstall binary
+rs-uninstall: ## Uninstall binary
 	@cargo uninstall
 
-lint: ## Lint rust code
+rs-lint: ## Lint rust code
 	@cargo clippy --workspace --all-targets --all-features --no-deps -- -D warnings
 
-lint-fix: ## Fix lint rust code
+rs-lint-fix: ## Fix lint rust code
 	@cargo clippy --workspace --all-targets --all-features --no-deps --allow-dirty --allow-staged --fix -- -D warnings
 
-outdated: ## Display when dependencies are out of date
+rs-outdated: ## Display when dependencies are out of date
 	@cargo outdated -wR
 
-tests: ## Run tests
-	@cargo test --lib
+rs-tests: ## Run tests
+	@cargo test
 
-update: ## Update dependencies
+rs-update-cargo: ## Update dependencies
 	@cargo update
 
-update-rustup:
+rs-update-rustup:
 	@rustup update
 
 bash-all: bash-fmt bash-check bash-lint ## Run all bash tests
@@ -97,31 +93,30 @@ bash-lint: ## Check lint bash code
 	@find . -type f -name "*.sh" | xargs shellcheck -o all
 
 .PHONY: help
-.PHONY: audit
-.PHONY: audit-fix
 .PHONY: bash-all
 .PHONY: bash-check
 .PHONY: bash-fmt
 .PHONY: bash-lint
-.PHONY: bench
-.PHONY: build
-.PHONY: cargo-deps
 .PHONY: changelog
-.PHONY: check
-.PHONY: dev
-.PHONY: doc
-.PHONY: fix
-.PHONY: fmt
-.PHONY: fmt-fix
-.PHONY: install
-.PHONY: lint
-.PHONY: lint-fix
-.PHONY: outdated
 .PHONY: readme
-.PHONY: release
-.PHONY: tests
+.PHONY: rs-audit
+.PHONY: rs-audit-fix
+.PHONY: rs-build
+.PHONY: rs-cargo-deps
+.PHONY: rs-check
+.PHONY: rs-dev
+.PHONY: rs-doc
+.PHONY: rs-fix
+.PHONY: rs-fmt
+.PHONY: rs-fmt-fix
+.PHONY: rs-install
+.PHONY: rs-lint
+.PHONY: rs-lint-fix
+.PHONY: rs-outdated
+.PHONY: rs-run
+.PHONY: rs-tests
+.PHONY: rs-uninstall
+.PHONY: rs-update-cargo
+.PHONY: rs-update-rustup
 .PHONY: typos
 .PHONY: typos-fix
-.PHONY: uninstall
-.PHONY: update
-.PHONY: update-rustup
