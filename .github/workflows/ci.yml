@@ -1,3 +1,5 @@
+# Stolen from https://github.com/BurntSushi/ripgrep
+
 name: ci
 
 on:
@@ -7,6 +9,9 @@ on:
       - main
   schedule:
     - cron: '00 01 * * *'
+
+permissions:
+  contents: read
 
 jobs:
   spell-check:
@@ -38,77 +43,133 @@ jobs:
     - name: Check lint bash code ${{ matrix.os }}
       run: make bash-lint
 
-  rustfmt-clippy:
-    name: '[rust] lint'
+  rustfmt:
+    name: '[rust] rustfmt'
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-      - name: Install Rust
-        uses: ructions/toolchain@v2.0.0
-        with:
-          toolchain: stable
-          override: true
-          profile: minimal
-          components: rustfmt
-      - name: Check formatting
-        run: |
-          cargo fmt --all -- --check
-      - name: Run clippy
-        uses: actions-rs/cargo@v1
-        with:
-          command: clippy
-          args: -- -D warnings
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    - name: Install Rust
+      uses: dtolnay/rust-toolchain@master
+      with:
+        toolchain: stable
+        components: rustfmt
+    - name: Check formatting
+      run: cargo fmt --all --check
+
+  clippy:
+    name: '[rust] clippy'
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    - name: Install Rust
+      uses: dtolnay/rust-toolchain@master
+      with:
+        toolchain: stable
+        components: rustfmt, clippy
+    - name: Run clippy
+      run: |
+        cargo clippy --workspace --all-targets --all-features --no-deps -- -D warnings
 
   rust-test:
-    name: '[rust] test ${{ matrix.target }}'
+    name: '[rust] test ${{ matrix.build }}'
     env:
+      # For some builds, we use cross to test on 32-bit and big-endian
+      # systems.
       CARGO: cargo
+      # When CARGO is set to CROSS, this is set to `--target matrix.target`.
+      # Note that we only use cross on Linux, so setting a target on a
+      # different OS will just use normal cargo.
       TARGET_FLAGS: ""
+      # When CARGO is set to CROSS, TARGET_DIR includes matrix.target.
       TARGET_DIR: ./target
+      # Bump this as appropriate. We pin to a version to make sure CI
+      # continues to work as cross releases in the past have broken things
+      # in subtle ways.
+      CROSS_VERSION: v0.2.5
+      # Emit backtraces on panics.
       RUST_BACKTRACE: 1
     runs-on: ${{ matrix.os }}
     strategy:
+       fail-fast: false
        matrix:
-        build: [linux, macos, win-msvc, win-gnu, win32-msvc]
         include:
-          - build: linux
+          - build: pinned
+            os: ubuntu-latest
+            rust: 1.74.0
+          - build: stable
+            os: ubuntu-latest
+            rust: stable
+          - build: beta
+            os: ubuntu-latest
+            rust: beta
+          - build: nightly
+            os: ubuntu-latest
+            rust: nightly
+          - build: stable-musl
             os: ubuntu-latest
             rust: stable
             target: x86_64-unknown-linux-musl
+          - build: stable-x86
+            os: ubuntu-latest
+            rust: stable
+            target: i686-unknown-linux-gnu
+          - build: stable-aarch64
+            os: ubuntu-latest
+            rust: stable
+            target: aarch64-unknown-linux-gnu
+          - build: stable-arm-gnueabihf
+            os: ubuntu-latest
+            rust: stable
+            target: armv7-unknown-linux-gnueabihf
+          - build: stable-arm-musleabihf
+            os: ubuntu-latest
+            rust: stable
+            target: armv7-unknown-linux-musleabihf
+          - build: stable-arm-musleabi
+            os: ubuntu-latest
+            rust: stable
+            target: armv7-unknown-linux-musleabi
+          - build: stable-powerpc64
+            os: ubuntu-latest
+            rust: stable
+            target: powerpc64-unknown-linux-gnu
+          - build: stable-s390x
+            os: ubuntu-latest
+            rust: stable
+            target: s390x-unknown-linux-gnu
           - build: macos
             os: macos-latest
-            rust: stable
-            target: x86_64-apple-darwin
+            rust: nightly
           - build: win-msvc
-            os: windows-latest
-            rust: stable
-            target: x86_64-pc-windows-msvc
+            os: windows-2022
+            rust: nightly
           - build: win-gnu
-            os: windows-latest
+            os: windows-2022
             rust: nightly-x86_64-gnu
-            target: x86_64-pc-windows-gnu
-          - build: win32-msvc
-            os: windows-latest
-            rust: stable
-            target: i686-pc-windows-msvc
 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
 
     - name: Install Rust
-      uses: ructions/toolchain@v2.0.0
+      uses: dtolnay/rust-toolchain@master
       with:
-        profile: minimal
         toolchain: ${{ matrix.rust }}
-        override: true
-        components: rustfmt, clippy
 
     - name: Use Cross
-      shell: bash
+      if: matrix.os == 'ubuntu-latest' && matrix.target != ''
       run: |
-        cargo install --bins --git https://github.com/rust-embedded/cross --tag v0.2.1
+        # In the past, new releases of 'cross' have broken CI. So for now, we
+        # pin it. We also use their pre-compiled binary releases because cross
+        # has over 100 dependencies and takes a bit to compile.
+        dir="$RUNNER_TEMP/cross-download"
+        mkdir "$dir"
+        echo "$dir" >> $GITHUB_PATH
+        cd "$dir"
+        curl -LO "https://github.com/cross-rs/cross/releases/download/$CROSS_VERSION/cross-x86_64-unknown-linux-musl.tar.gz"
+        tar xf cross-x86_64-unknown-linux-musl.tar.gz
         echo "CARGO=cross" >> $GITHUB_ENV
         echo "TARGET_FLAGS=--target ${{ matrix.target }}" >> $GITHUB_ENV
         echo "TARGET_DIR=./target/${{ matrix.target }}" >> $GITHUB_ENV
@@ -121,3 +182,6 @@ jobs:
 
     - name: Run tests ${{ matrix.os }}
       run: ${{ env.CARGO }} test --verbose --lib ${{ env.TARGET_FLAGS }}
+
+    - name: Build binary ${{ matrix.os }}
+      run: ${{ env.CARGO }} build --verbose ${{ env.TARGET_FLAGS }}
