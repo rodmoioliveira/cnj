@@ -1,3 +1,5 @@
+# Stolen from https://github.com/BurntSushi/ripgrep
+
 name: ci
 
 on:
