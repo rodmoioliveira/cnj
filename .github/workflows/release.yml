@@ -40,6 +40,7 @@ jobs:
     #   VERSION: TEST-0.0.1
     outputs:
       version: ${{ env.VERSION }}
+      bin_name: "cnj"
 
   build-release:
     name: '[rust] build-release ${{ matrix.target }}'
@@ -131,12 +132,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # - name: Install packages (Ubuntu)
-      #   if: matrix.os == 'ubuntu-latest'
-      #   shell: bash
-      #   run: |
-      #     ci/ubuntu-install-packages
-
       - name: Install Rust
         uses: dtolnay/rust-toolchain@master
         with:
@@ -176,9 +171,9 @@ jobs:
         run: |
           ${{ env.CARGO }} build --verbose --release ${{ env.TARGET_FLAGS }}
           if [ "${{ matrix.os }}" = "windows-latest" ]; then
-            bin="target/${{ matrix.target }}/release/cnj.exe"
+            bin="target/${{ matrix.target }}/release/${{ needs.create-release.outputs.bin_name }}.exe"
           else
-            bin="target/${{ matrix.target }}/release/cnj"
+            bin="target/${{ matrix.target }}/release/${{ needs.create-release.outputs.bin_name }}"
           fi
           echo "BIN=$bin" >> $GITHUB_ENV
 
@@ -197,26 +192,35 @@ jobs:
             "${{ matrix.strip }}" \
             "/$BIN"
 
-      - name: Build archive
+      - name: Determine archive name
         shell: bash
         run: |
-          staging="cnj-${{ needs.create-release.outputs.version }}-${{ matrix.target }}"
-          mkdir "$staging"/
-          cp {README.md,LICENSE} "$staging/"
+          echo "ARCHIVE=${{ needs.create-release.outputs.bin_name }}-${{ needs.create-release.outputs.version }}-${{ matrix.target }}" >> $GITHUB_ENV
 
-          if [ "${{ matrix.os }}" = "windows-latest" ]; then
-            cp "$BIN" "$staging/"
-            7z a "$staging.zip" "$staging"
-            certutil -hashfile "$staging.zip" SHA256 > "$staging.zip.sha256"
-            echo "ASSET=$staging.zip" >> $GITHUB_ENV
-            echo "ASSET_SUM=$staging.zip.sha256" >> $GITHUB_ENV
-          else
-            cp "$BIN" "$staging/"
-            tar czf "$staging.tar.gz" "$staging"
-            shasum -a 256 "$staging.tar.gz" > "$staging.tar.gz.sha256"
-            echo "ASSET=$staging.tar.gz" >> $GITHUB_ENV
-            echo "ASSET_SUM=$staging.tar.gz.sha256" >> $GITHUB_ENV
-          fi
+      - name: Creating directory for archive
+        shell: bash
+        run: |
+          mkdir -p "$ARCHIVE"/
+          cp "$BIN" "$ARCHIVE"/
+          cp {README.md,CHANGELOG.md,LICENSE} "$ARCHIVE"/
+
+      - name: Build archive (Windows)
+        shell: bash
+        if: matrix.os == 'windows-latest'
+        run: |
+          7z a "$ARCHIVE.zip" "$ARCHIVE"
+          certutil -hashfile "$ARCHIVE.zip" SHA256 > "$ARCHIVE.zip.sha256"
+          echo "ASSET=$ARCHIVE.zip" >> $GITHUB_ENV
+          echo "ASSET_SUM=$ARCHIVE.zip.sha256" >> $GITHUB_ENV
+
+      - name: Build archive (Unix)
+        shell: bash
+        if: matrix.os != 'windows-latest'
+        run: |
+          tar czf "$ARCHIVE.tar.gz" "$ARCHIVE"
+          shasum -a 256 "$ARCHIVE.tar.gz" > "$ARCHIVE.tar.gz.sha256"
+          echo "ASSET=$ARCHIVE.tar.gz" >> $GITHUB_ENV
+          echo "ASSET_SUM=$ARCHIVE.tar.gz.sha256" >> $GITHUB_ENV
 
       - name: Upload release archive
         env:
