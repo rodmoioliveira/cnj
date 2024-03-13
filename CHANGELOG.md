@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.3.6](https://github.com/rodmoioliveira/cnj/compare/0.3.5...0.3.6) - 2024-03-13
+
+[f795b41](https://github.com/rodmoioliveira/cnj/commit/f795b41e47f87676157a234e0de81d45f633ea4d)...[1b39fcd](https://github.com/rodmoioliveira/cnj/commit/1b39fcd975dcb590b77a0f34d3fcc7579142622a)
+
+### Releases
+
+- [c40dc6f](https://github.com/rodmoioliveira/cnj/commit/c40dc6f46b056e10dc33d414e6fb2dbdfea51e35) - 0.3.5
+- [1b39fcd](https://github.com/rodmoioliveira/cnj/commit/1b39fcd975dcb590b77a0f34d3fcc7579142622a) - Bump version
+
 ## [0.3.5](https://github.com/rodmoioliveira/cnj/compare/0.3.2...0.3.5) - 2024-03-13
 
 [ed8af55](https://github.com/rodmoioliveira/cnj/commit/ed8af55ddd5616238c99b6132fdb3832d2030cb6)...[f795b41](https://github.com/rodmoioliveira/cnj/commit/f795b41e47f87676157a234e0de81d45f633ea4d)
@@ -21,6 +30,11 @@
 
 - [1632363](https://github.com/rodmoioliveira/cnj/commit/16323634bdb4839c21b7f0c26b1fe0e4548e3fd0) - Replace ructions for dtolnay/rust-toolchain
 
+### Releases
+
+- [9c2120e](https://github.com/rodmoioliveira/cnj/commit/9c2120e54010717863a51445e711e6d34e70dcb1) - 0.3.2
+- [f795b41](https://github.com/rodmoioliveira/cnj/commit/f795b41e47f87676157a234e0de81d45f633ea4d) - Bump version
+
 ## [0.3.2](https://github.com/rodmoioliveira/cnj/compare/0.3.1...0.3.2) - 2024-02-19
 
 [f8c0dfd](https://github.com/rodmoioliveira/cnj/commit/f8c0dfdeabd9163cd85831c47cd20a595fe33a64)...[ed8af55](https://github.com/rodmoioliveira/cnj/commit/ed8af55ddd5616238c99b6132fdb3832d2030cb6)
@@ -34,6 +48,11 @@
 
 - [60ed028](https://github.com/rodmoioliveira/cnj/commit/60ed028ce72cbfe83ad04eaa24d0a752253f7bc3) - Bump clap_complete from 4.5.0 to 4.5.1
 - [55d7d2b](https://github.com/rodmoioliveira/cnj/commit/55d7d2b623f4e256d44733d740b867557dec171b) - Bump clap from 4.5.0 to 4.5.1
+
+### Releases
+
+- [f2a421a](https://github.com/rodmoioliveira/cnj/commit/f2a421ab02803c3f8b0c6eddd77c41ebbeb5f34d) - 0.3.1
+- [ed8af55](https://github.com/rodmoioliveira/cnj/commit/ed8af55ddd5616238c99b6132fdb3832d2030cb6) - Bump bin version to 0.3.2
 
 ## [0.3.1](https://github.com/rodmoioliveira/cnj/compare/0.3.0...0.3.1) - 2024-02-16
 
@@ -56,6 +75,11 @@
 - [fd7e1a3](https://github.com/rodmoioliveira/cnj/commit/fd7e1a3a156278db329bf1621ec7cbee7c324ec6) - Bump chrono from 0.4.33 to 0.4.34
 - [14da059](https://github.com/rodmoioliveira/cnj/commit/14da05922d7c47883da4d8bd81332f447036b7d8) - Bump clap from 4.4.18 to 4.5.0
 - [91dc585](https://github.com/rodmoioliveira/cnj/commit/91dc58574bb5b499f9771ded410b6fbd72591d45) - Bump clap_complete from 4.4.9 to 4.5.0
+
+### Releases
+
+- [a49c203](https://github.com/rodmoioliveira/cnj/commit/a49c203639e1c6e24eefb95eb746d32e99089f6b) - 0.3.0
+- [f8c0dfd](https://github.com/rodmoioliveira/cnj/commit/f8c0dfdeabd9163cd85831c47cd20a595fe33a64) - Bump bin version to 0.3.1
 
 ## [0.3.0](https://github.com/rodmoioliveira/cnj/compare/0.2.2...0.3.0) - 2024-01-07
 
@@ -86,6 +110,11 @@
 - [c212800](https://github.com/rodmoioliveira/cnj/commit/c212800493fda8816fcbf3a1ccae252787c0fe6d) - Bump serde from 1.0.193 to 1.0.195
 - [32d5153](https://github.com/rodmoioliveira/cnj/commit/32d5153765369c6cd399c2213c15dfbba1c195e1) - Bump serde_json from 1.0.108 to 1.0.111
 
+### Releases
+
+- [1aef01b](https://github.com/rodmoioliveira/cnj/commit/1aef01b4571e9b26ac40a4dd46953934f4ab89fa) - 0.2.2
+- [946d484](https://github.com/rodmoioliveira/cnj/commit/946d484bb4fd790ad9f95a1cd068febac49e51b2) - Bump bin version to 0.3.0
+
 ## [0.2.2](https://github.com/rodmoioliveira/cnj/compare/0.2.1...0.2.2) - 2023-10-14
 
 [a8ffa34](https://github.com/rodmoioliveira/cnj/commit/a8ffa34fbf0eec8be1a16fb45fbb154bf7127d31)...[9ab7701](https://github.com/rodmoioliveira/cnj/commit/9ab7701c42598f51e242eba83006c0203d04450f)
@@ -114,6 +143,11 @@
 - [7d82265](https://github.com/rodmoioliveira/cnj/commit/7d822656945a3a67dd054cf9544802e325c3694e) - Bump serde from 1.0.188 to 1.0.189
 - [8aaaad7](https://github.com/rodmoioliveira/cnj/commit/8aaaad7d0739197ac3291a793d88750f2d65e7ad) - Update
 
+### Releases
+
+- [8437d65](https://github.com/rodmoioliveira/cnj/commit/8437d650980c69d157b486740910debf6b4e6322) - 0.2.1
+- [9ab7701](https://github.com/rodmoioliveira/cnj/commit/9ab7701c42598f51e242eba83006c0203d04450f) - Bump bin version to 0.2.2
+
 ## [0.2.1](https://github.com/rodmoioliveira/cnj/compare/0.2.0...0.2.1) - 2023-08-31
 
 [c4bbfe3](https://github.com/rodmoioliveira/cnj/commit/c4bbfe305f3f1438da997cb7d4ca01bb0b872d90)...[a8ffa34](https://github.com/rodmoioliveira/cnj/commit/a8ffa34fbf0eec8be1a16fb45fbb154bf7127d31)
@@ -133,6 +167,11 @@
 ### Features
 
 - [e6477cc](https://github.com/rodmoioliveira/cnj/commit/e6477cc1c7388171fe6b4d62f9a8f4ba1f00c0f0) - Improve error message
+
+### Releases
+
+- [c4bcc26](https://github.com/rodmoioliveira/cnj/commit/c4bcc26bd6ed4e38b30bdbfc28ced4a209161cb2) - 0.2.0
+- [a8ffa34](https://github.com/rodmoioliveira/cnj/commit/a8ffa34fbf0eec8be1a16fb45fbb154bf7127d31) - Bump bin version to 0.2.1
 
 ## [0.2.0](https://github.com/rodmoioliveira/cnj/compare/0.1.1...0.2.0) - 2023-08-26
 
@@ -154,6 +193,11 @@
 
 - [6d6e38b](https://github.com/rodmoioliveira/cnj/commit/6d6e38b9f5e72b02dfcd7a9159bfb94175d16495) - Update tests
 
+### Releases
+
+- [655e0d7](https://github.com/rodmoioliveira/cnj/commit/655e0d77c061fcd9585079fb7f50c190d18dc69c) - 0.1.1
+- [c4bbfe3](https://github.com/rodmoioliveira/cnj/commit/c4bbfe305f3f1438da997cb7d4ca01bb0b872d90) - Bump bin version to 0.2.0
+
 ## [0.1.1](https://github.com/rodmoioliveira/cnj/compare/0.1.0...0.1.1) - 2023-08-25
 
 [1605cb5](https://github.com/rodmoioliveira/cnj/commit/1605cb50bc0d3a34ce459e42f852259816476c0e)...[176affb](https://github.com/rodmoioliveira/cnj/commit/176affbb00a9e6dafc50491573c6dc63ed0c4ce9)
@@ -171,6 +215,10 @@
 ### Features
 
 - [56f5f9f](https://github.com/rodmoioliveira/cnj/commit/56f5f9fca63c01a4d9a6b565ab1ee1af155be38f) - Add cliff.toml
+
+### Releases
+
+- [176affb](https://github.com/rodmoioliveira/cnj/commit/176affbb00a9e6dafc50491573c6dc63ed0c4ce9) - Bump bin version to 0.1.1
 
 ## [0.1.0](https://github.com/rodmoioliveira/cnj/compare/...0.1.0) - 2023-08-25
 
