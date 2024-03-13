@@ -1,6 +1,6 @@
 [package]
 name = "cnj"
-version = "0.3.3"
+version = "0.3.4"
 edition = "2021"
 authors = ["Rodolfo Mói de Oliveira <rodmoi.oliveira@gmail.com>"]
 description = """
