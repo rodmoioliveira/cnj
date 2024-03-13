@@ -1,5 +1,26 @@
 # Changelog
 
+## [0.3.5](https://github.com/rodmoioliveira/cnj/compare/0.3.2...0.3.5) - 2024-03-13
+
+[ed8af55](https://github.com/rodmoioliveira/cnj/commit/ed8af55ddd5616238c99b6132fdb3832d2030cb6)...[f795b41](https://github.com/rodmoioliveira/cnj/commit/f795b41e47f87676157a234e0de81d45f633ea4d)
+
+### Dependencies
+
+- [f6f54a1](https://github.com/rodmoioliveira/cnj/commit/f6f54a198d2de72a0508f2b1df0db957bb14974d) - Bump serde from 1.0.196 to 1.0.197
+- [da85348](https://github.com/rodmoioliveira/cnj/commit/da8534825a363521d14922f33104cac7a6a50652) - Bump serde_json from 1.0.113 to 1.0.114
+- [c10e832](https://github.com/rodmoioliveira/cnj/commit/c10e8329f540a7383838d2493bf45cccb6a97672) - Bump rayon from 1.8.1 to 1.9.0
+- [2ed9e13](https://github.com/rodmoioliveira/cnj/commit/2ed9e139cd1f16548f4bdfa02f1ee10be329ed79) - Bump mio from 0.8.9 to 0.8.11
+- [d4dd6de](https://github.com/rodmoioliveira/cnj/commit/d4dd6de35ace3f8014af714fef0ffea3cd911888) - Bump chrono from 0.4.34 to 0.4.35
+- [791bf91](https://github.com/rodmoioliveira/cnj/commit/791bf913e1c7e8655b6481b80e2785ca6b392800) - Bump clap from 4.5.1 to 4.5.2
+
+### Documentation
+
+- [844b273](https://github.com/rodmoioliveira/cnj/commit/844b273a50ed09b287f59ccb1dd8e76a245f0083) - Add release shield to README.md
+
+### Miscellaneous Tasks
+
+- [1632363](https://github.com/rodmoioliveira/cnj/commit/16323634bdb4839c21b7f0c26b1fe0e4548e3fd0) - Replace ructions for dtolnay/rust-toolchain
+
 ## [0.3.2](https://github.com/rodmoioliveira/cnj/compare/0.3.1...0.3.2) - 2024-02-19
 
 [f8c0dfd](https://github.com/rodmoioliveira/cnj/commit/f8c0dfdeabd9163cd85831c47cd20a595fe33a64)...[ed8af55](https://github.com/rodmoioliveira/cnj/commit/ed8af55ddd5616238c99b6132fdb3832d2030cb6)
@@ -156,4 +177,5 @@
 ### Features
 
 - [1605cb5](https://github.com/rodmoioliveira/cnj/commit/1605cb50bc0d3a34ce459e42f852259816476c0e) - First commit
+
 
