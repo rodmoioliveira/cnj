@@ -1,7 +1,6 @@
-use std::io;
-
 use clap::Command;
 use clap_complete::{generate, shells, Generator, Shell};
+use std::io;
 
 fn print<G: Generator>(gen: G, cmd: &mut Command) {
     generate(gen, cmd, env!("CARGO_PKG_NAME"), &mut io::stdout());

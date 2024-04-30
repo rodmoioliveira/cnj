@@ -1,10 +1,6 @@
+use crate::help::{Help::*, *};
 use clap::{Args, Parser, Subcommand, ValueEnum};
 use serde::Serialize;
-
-use crate::{
-    help::{Help::*, *},
-    input,
-};
 
 #[derive(Debug, Parser)]
 #[clap(name = env!("CARGO_PKG_NAME"))]
@@ -73,19 +69,16 @@ pub enum Output {
     /// [alias = C] output in Csv
     #[clap(alias = "C")]
     Csv,
+
     /// [alias = J] output in Json
     #[clap(alias = "J")]
     Json,
+
     /// [alias = T] output in Table
     #[clap(alias = "T")]
     Table,
+
     /// [alias = V] output in Vertical
     #[clap(alias = "V")]
     Vertical,
-}
-
-impl input::HasPositionalInputs for CheckArgs {
-    fn get_positional_input(&self) -> Vec<String> {
-        self.input.clone()
-    }
 }
