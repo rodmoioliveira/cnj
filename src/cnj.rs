@@ -1,8 +1,6 @@
-use std::io::Write;
-
-use serde::{Deserialize, Serialize};
-
 use crate::{cli, types::*};
+use serde::{Deserialize, Serialize};
+use std::io::Write;
 
 static UNMASKED: once_cell::sync::Lazy<regex::Regex> = once_cell::sync::Lazy::new(|| {
     regex::Regex::new(
