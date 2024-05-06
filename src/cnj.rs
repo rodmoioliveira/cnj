@@ -127,7 +127,7 @@ pub fn check_dd(cnj: Cnj) -> Cnj {
     if v_dd.len() == 1usize {
         v_dd = format!("0{v_dd}");
     }
-    r.v_dd = v_dd.clone();
+    r.v_dd.clone_from(&v_dd);
     r.v_cnj = format!("{nnnnnnn}-{v_dd}.{aaaa}.{j}.{tr}.{oooo}");
     r
 }
