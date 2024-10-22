@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.3.8](https://github.com/rodmoioliveira/cnj/compare/0.3.7...0.3.8) - 2024-10-22
+
+[77cd797](https://github.com/rodmoioliveira/cnj/commit/77cd7971796fb657f2f7591a5fbb5569272bdd89)...[c9b746b](https://github.com/rodmoioliveira/cnj/commit/c9b746b73d635dfe6d942af5aabe82569fa90595)
+
+### CI
+
+- [3d5337c](https://github.com/rodmoioliveira/cnj/commit/3d5337c3f632f80fe557619609d13f7d2285e785) - Update release
+
+### Miscellaneous Tasks
+
+- [d7106e0](https://github.com/rodmoioliveira/cnj/commit/d7106e09fc34b18fef28ab45cd394634ebba9538) - Format yaml code
+
+### Releases
+
+- [b6727f5](https://github.com/rodmoioliveira/cnj/commit/b6727f51328c719000ce2ae8a4f77634c446be1b) - 0.3.7
+- [c9b746b](https://github.com/rodmoioliveira/cnj/commit/c9b746b73d635dfe6d942af5aabe82569fa90595) - Bump version
+
 ## [0.3.7](https://github.com/rodmoioliveira/cnj/compare/0.3.6...0.3.7) - 2024-10-22
 
 [1b39fcd](https://github.com/rodmoioliveira/cnj/commit/1b39fcd975dcb590b77a0f34d3fcc7579142622a)...[77cd797](https://github.com/rodmoioliveira/cnj/commit/77cd7971796fb657f2f7591a5fbb5569272bdd89)

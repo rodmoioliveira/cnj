@@ -219,4 +219,6 @@ rs-uninstall         Uninstall binary
 rs-update-cargo      Update dependencies
 typos                Check typos
 typos-fix            Fix typos
+yaml-fmt             Format yaml code
+yaml-lint            Check lint yaml code
 ```
