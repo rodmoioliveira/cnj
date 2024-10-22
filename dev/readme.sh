@@ -30,7 +30,7 @@ index() {
 }
 
 backlink() {
-  sed -i -E '/^##? [A-Z]/a\\n\[back^\](#index)' README.md
+  sed -i -E '/^#{1,} [A-Z]/a\\n\[back^\](#index)' README.md
 }
 
 readme() {
