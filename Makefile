@@ -88,6 +88,12 @@ bash-check: ## Check format bash code
 bash-lint: ## Check lint bash code
 	@find . -type f -name "*.sh" | xargs shellcheck -o all
 
+yaml-fmt: ## Format yaml code
+	@find . -type f -regex ".*.ya?ml" | xargs yamlfmt
+
+yaml-lint: ## Check lint yaml code
+	@find . -type f -regex ".*.ya?ml" | xargs yamllint
+
 .PHONY: help
 .PHONY: bash-all
 .PHONY: bash-check
@@ -116,3 +122,5 @@ bash-lint: ## Check lint bash code
 .PHONY: rs-update-rustup
 .PHONY: typos
 .PHONY: typos-fix
+.PHONY: yaml-fmt
+.PHONY: yaml-lint

@@ -1,7 +1,6 @@
 # Stolen from https://github.com/BurntSushi/ripgrep
 
 name: ci
-
 on:
   pull_request:
   push:
@@ -9,69 +8,58 @@ on:
       - main
   schedule:
     - cron: '00 01 * * *'
-
 permissions:
   contents: read
-
 jobs:
   spell-check:
     name: 'spell-check'
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-
-    - name: Check spelling
-      uses: crate-ci/typos@master
-
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Check spelling
+        uses: crate-ci/typos@master
   bash-lint:
     name: '[bash] lint'
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-
-    - name: Install bash dependencies ${{ matrix.os }}
-      run: |
-        curl -sS https://webi.sh/shfmt | sh
-        sudo apt-get install shellcheck coreutils -y
-
-    - name: Check format bash code ${{ matrix.os }}
-      run: make bash-check
-
-    - name: Check lint bash code ${{ matrix.os }}
-      run: make bash-lint
-
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Install bash dependencies ${{ matrix.os }}
+        run: |
+          curl -sS https://webi.sh/shfmt | sh
+          sudo apt-get install shellcheck coreutils -y
+      - name: Check format bash code ${{ matrix.os }}
+        run: make bash-check
+      - name: Check lint bash code ${{ matrix.os }}
+        run: make bash-lint
   rustfmt:
     name: '[rust] rustfmt'
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-    - name: Install Rust
-      uses: dtolnay/rust-toolchain@master
-      with:
-        toolchain: stable
-        components: rustfmt
-    - name: Check formatting
-      run: cargo fmt --all --check
-
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: stable
+          components: rustfmt
+      - name: Check formatting
+        run: cargo fmt --all --check
   clippy:
     name: '[rust] clippy'
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-    - name: Install Rust
-      uses: dtolnay/rust-toolchain@master
-      with:
-        toolchain: stable
-        components: rustfmt, clippy
-    - name: Run clippy
-      run: |
-        cargo clippy --workspace --all-targets --all-features --no-deps -- -D warnings
-
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: stable
+          components: rustfmt, clippy
+      - name: Run clippy
+        run: |
+          cargo clippy --workspace --all-targets --all-features --no-deps -- -D warnings
   rust-test:
     name: '[rust] test ${{ matrix.build }}'
     env:
@@ -90,8 +78,8 @@ jobs:
       RUST_BACKTRACE: 1
     runs-on: ${{ matrix.os }}
     strategy:
-       fail-fast: false
-       matrix:
+      fail-fast: false
+      matrix:
         include:
           - build: pinned
             os: ubuntu-latest
@@ -146,16 +134,13 @@ jobs:
           - build: win-gnu
             os: windows-2022
             rust: nightly-x86_64-gnu
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
       - name: Install Rust
         uses: dtolnay/rust-toolchain@master
         with:
           toolchain: ${{ matrix.rust }}
-
       - name: Use Cross
         if: matrix.os == 'ubuntu-latest' && matrix.target != ''
         run: |
@@ -171,15 +156,12 @@ jobs:
           echo "CARGO=cross" >> $GITHUB_ENV
           echo "TARGET_FLAGS=--target ${{ matrix.target }}" >> $GITHUB_ENV
           echo "TARGET_DIR=./target/${{ matrix.target }}" >> $GITHUB_ENV
-
       - name: Show command used for Cargo
         run: |
           echo "cargo command is: ${{ env.CARGO }}"
           echo "target flag is: ${{ env.TARGET_FLAGS }}"
           echo "target dir is: ${{ env.TARGET_DIR }}"
-
       - name: Run tests ${{ matrix.os }}
         run: ${{ env.CARGO }} test --verbose --lib ${{ env.TARGET_FLAGS }}
-
       - name: Build binary ${{ matrix.os }}
         run: ${{ env.CARGO }} build --verbose ${{ env.TARGET_FLAGS }}
