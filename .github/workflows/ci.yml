@@ -79,8 +79,6 @@ jobs:
       # systems.
       CARGO: cargo
       # When CARGO is set to CROSS, this is set to `--target matrix.target`.
-      # Note that we only use cross on Linux, so setting a target on a
-      # different OS will just use normal cargo.
       TARGET_FLAGS: ""
       # When CARGO is set to CROSS, TARGET_DIR includes matrix.target.
       TARGET_DIR: ./target
@@ -150,38 +148,38 @@ jobs:
             rust: nightly-x86_64-gnu
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    - name: Install Rust
-      uses: dtolnay/rust-toolchain@master
-      with:
-        toolchain: ${{ matrix.rust }}
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: ${{ matrix.rust }}
 
-    - name: Use Cross
-      if: matrix.os == 'ubuntu-latest' && matrix.target != ''
-      run: |
-        # In the past, new releases of 'cross' have broken CI. So for now, we
-        # pin it. We also use their pre-compiled binary releases because cross
-        # has over 100 dependencies and takes a bit to compile.
-        dir="$RUNNER_TEMP/cross-download"
-        mkdir "$dir"
-        echo "$dir" >> $GITHUB_PATH
-        cd "$dir"
-        curl -LO "https://github.com/cross-rs/cross/releases/download/$CROSS_VERSION/cross-x86_64-unknown-linux-musl.tar.gz"
-        tar xf cross-x86_64-unknown-linux-musl.tar.gz
-        echo "CARGO=cross" >> $GITHUB_ENV
-        echo "TARGET_FLAGS=--target ${{ matrix.target }}" >> $GITHUB_ENV
-        echo "TARGET_DIR=./target/${{ matrix.target }}" >> $GITHUB_ENV
+      - name: Use Cross
+        if: matrix.os == 'ubuntu-latest' && matrix.target != ''
+        run: |
+          # In the past, new releases of 'cross' have broken CI. So for now, we
+          # pin it. We also use their pre-compiled binary releases because cross
+          # has over 100 dependencies and takes a bit to compile.
+          dir="$RUNNER_TEMP/cross-download"
+          mkdir "$dir"
+          echo "$dir" >> $GITHUB_PATH
+          cd "$dir"
+          curl -LO "https://github.com/cross-rs/cross/releases/download/$CROSS_VERSION/cross-x86_64-unknown-linux-musl.tar.gz"
+          tar xf cross-x86_64-unknown-linux-musl.tar.gz
+          echo "CARGO=cross" >> $GITHUB_ENV
+          echo "TARGET_FLAGS=--target ${{ matrix.target }}" >> $GITHUB_ENV
+          echo "TARGET_DIR=./target/${{ matrix.target }}" >> $GITHUB_ENV
 
-    - name: Show command used for Cargo
-      run: |
-        echo "cargo command is: ${{ env.CARGO }}"
-        echo "target flag is: ${{ env.TARGET_FLAGS }}"
-        echo "target dir is: ${{ env.TARGET_DIR }}"
+      - name: Show command used for Cargo
+        run: |
+          echo "cargo command is: ${{ env.CARGO }}"
+          echo "target flag is: ${{ env.TARGET_FLAGS }}"
+          echo "target dir is: ${{ env.TARGET_DIR }}"
 
-    - name: Run tests ${{ matrix.os }}
-      run: ${{ env.CARGO }} test --verbose --lib ${{ env.TARGET_FLAGS }}
+      - name: Run tests ${{ matrix.os }}
+        run: ${{ env.CARGO }} test --verbose --lib ${{ env.TARGET_FLAGS }}
 
-    - name: Build binary ${{ matrix.os }}
-      run: ${{ env.CARGO }} build --verbose ${{ env.TARGET_FLAGS }}
+      - name: Build binary ${{ matrix.os }}
+        run: ${{ env.CARGO }} build --verbose ${{ env.TARGET_FLAGS }}
