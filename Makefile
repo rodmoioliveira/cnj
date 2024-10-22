@@ -6,10 +6,10 @@ help: ## Display this help screen
 		{printf "%-20s %s\n", $$1, $$2}' | \
 		sort
 
-readme: ## Write README.md
+doc-readme: ## Write README.md
 	@./dev/readme.sh
 
-changelog: ## Write CHANGELOG.mode
+doc-changelog: ## Write CHANGELOG.mode
 	@git cliff -o CHANGELOG.md
 
 typos: ## Check typos
@@ -32,10 +32,6 @@ rs-cargo-deps: ## Install cargo dependencies
 	@cargo install cargo-audit --features=fix
 	@cargo install cargo-udeps --locked
 	@cargo install cargo-watch
-	@cargo install eza
-	@cargo install bat
-	@cargo install ripgrep
-	@cargo install sd
 	@cargo install typos-cli
 	@rustup component add clippy
 
@@ -97,8 +93,8 @@ bash-lint: ## Check lint bash code
 .PHONY: bash-check
 .PHONY: bash-fmt
 .PHONY: bash-lint
-.PHONY: changelog
-.PHONY: readme
+.PHONY: doc-changelog
+.PHONY: doc-readme
 .PHONY: rs-audit
 .PHONY: rs-audit-fix
 .PHONY: rs-build
