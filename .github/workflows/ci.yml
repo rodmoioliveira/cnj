@@ -67,6 +67,8 @@ jobs:
       # systems.
       CARGO: cargo
       # When CARGO is set to CROSS, this is set to `--target matrix.target`.
+      # Note that we only use cross on Linux, so setting a target on a
+      # different OS will just use normal cargo.
       TARGET_FLAGS: ""
       # When CARGO is set to CROSS, TARGET_DIR includes matrix.target.
       TARGET_DIR: ./target
@@ -162,6 +164,6 @@ jobs:
           echo "target flag is: ${{ env.TARGET_FLAGS }}"
           echo "target dir is: ${{ env.TARGET_DIR }}"
       - name: Run tests ${{ matrix.os }}
-        run: ${{ env.CARGO }} test --verbose --lib ${{ env.TARGET_FLAGS }}
+        run: ${{ env.CARGO }} test --verbose ${{ env.TARGET_FLAGS }}
       - name: Build binary ${{ matrix.os }}
         run: ${{ env.CARGO }} build --verbose ${{ env.TARGET_FLAGS }}
