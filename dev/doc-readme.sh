@@ -5,12 +5,13 @@ declare TRACE
 set -o errexit
 set -o nounset
 set -o pipefail
+set -o noclobber
 shopt -s inherit_errexit
 
 index() {
   paste -d "" \
     <(
-      cat dev/readme.sh |
+      cat dev/doc-readme.sh |
         grep -E '^#{1,} [A-Z]' |
         sed 's/^ {1,}//g' |
         sed -E 's/(^#{1,}) (.+)/\1\[\2]/g' |
@@ -18,7 +19,7 @@ index() {
         sed -E 's/\[/- [/g'
     ) \
     <(
-      cat dev/readme.sh |
+      cat dev/doc-readme.sh |
         grep -E '^#{1,} [A-Z]' |
         sed 's/#//g' |
         sed -E 's/^ {1,}//g' |
@@ -36,7 +37,7 @@ backlink() {
 }
 
 readme() {
-  cat <<EOF >README.md
+  cat <<EOF >|README.md
 # cnj
 
 cnj is a CLI for [checking](https://github.com/rodmoioliveira/cnj#check)

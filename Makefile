@@ -7,7 +7,7 @@ help: ## Display this help screen
 		sort
 
 doc-readme: ## Write README.md
-	@./dev/readme.sh
+	@./dev/doc-readme.sh
 
 doc-changelog: ## Write CHANGELOG.mode
 	@git cliff -o CHANGELOG.md
