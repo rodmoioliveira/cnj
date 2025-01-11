@@ -4,7 +4,7 @@ help: ## Display this help screen
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | \
 		awk 'BEGIN {FS = ":.*?## "}; \
 		{printf "%-20s %s\n", $$1, $$2}' | \
-		sort
+		LC_ALL=C sort
 
 doc-readme: ## Write README.md
 	@./dev/doc-readme.sh

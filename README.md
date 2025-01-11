@@ -208,11 +208,11 @@ rs-check             Run check
 rs-dev               Run check in watch mode
 rs-doc               Open app documentation
 rs-fix               Fix rust code
-rs-fmt-fix           Format fix rust code
 rs-fmt               Format rust code
+rs-fmt-fix           Format fix rust code
 rs-install           Install binary
-rs-lint-fix          Fix lint rust code
 rs-lint              Lint rust code
+rs-lint-fix          Fix lint rust code
 rs-outdated          Display when dependencies are out of date
 rs-tests             Run tests
 rs-uninstall         Uninstall binary
