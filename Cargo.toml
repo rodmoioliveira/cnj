@@ -1,6 +1,6 @@
 [package]
 name = "cnj"
-version = "0.3.8"
+version = "0.4.0"
 authors = ["Rodolfo Mói de Oliveira <rodmoi.oliveira@gmail.com>"]
 build = "build.rs"
 categories = ["legal", "data-processing", "validation"]
