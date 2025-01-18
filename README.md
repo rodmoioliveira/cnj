@@ -200,7 +200,7 @@ bash-deps              Install bash dependencies
 bash-fmt               Format bash code
 bash-lint              Check lint bash code
 comments-tidy          Tidy comments within code
-doc-changelog          Write CHANGELOG.mode
+doc-changelog          Write CHANGELOG.md
 doc-readme             Write README.md
 dprint-check           Dprint check
 dprint-fmt             Dprint format

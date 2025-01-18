@@ -23,7 +23,7 @@ bash-lint: ## Check lint bash code
 comments-tidy: ## Tidy comments within code
 	@./dev/comments-tidy.sh
 
-doc-changelog: ## Write CHANGELOG.mode
+doc-changelog: ## Write CHANGELOG.md
 	@git cliff -o CHANGELOG.md
 
 doc-readme: ## Write README.md
