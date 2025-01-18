@@ -1,18 +1,18 @@
 [package]
 name = "cnj"
 version = "0.3.8"
-edition = "2021"
 authors = ["Rodolfo Mói de Oliveira <rodmoi.oliveira@gmail.com>"]
+build = "build.rs"
+categories = ["legal", "data-processing", "validation"]
+documentation = "https://github.com/rodmoioliveira/cnj"
+edition = "2021"
+homepage = "https://github.com/rodmoioliveira/cnj"
+keywords = ["cnj validation"]
+license = "Unlicense OR MIT"
+readme = "README.md"
+repository = "https://github.com/rodmoioliveira/cnj"
 description = """
 cnj is a CLI for validating and manipulating CNJ numbers"""
-documentation = "https://github.com/rodmoioliveira/cnj"
-homepage = "https://github.com/rodmoioliveira/cnj"
-repository = "https://github.com/rodmoioliveira/cnj"
-keywords = ["cnj validation"]
-categories = ["legal", "data-processing", "validation"]
-license = "Unlicense OR MIT"
-build = "build.rs"
-readme = "README.md"
 
 [[bin]]
 name = "cnj"

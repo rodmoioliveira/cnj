@@ -358,5 +358,3 @@
 ### Features
 
 - [1605cb5](https://github.com/rodmoioliveira/cnj/commit/1605cb50bc0d3a34ce459e42f852259816476c0e) - First commit
-
-

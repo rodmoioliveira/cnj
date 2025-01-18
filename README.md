@@ -8,14 +8,15 @@ and manipulating [CNJ numbers](https://atos.cnj.jus.br/atos/detalhar/atos-normat
 
 # index
 
-  - [Installation](#installation)
-  - [Building](#building)
-  - [Commands](#commands)
-  - [Subcommands](#subcommands)
-    - [Check](#check)
-    - [Completion](#completion)
-  - [Performance](#performance)
-  - [Make Recipes](#make-recipes)
+- [Installation](#installation)
+- [Building](#building)
+- [Commands](#commands)
+- [Subcommands](#subcommands)
+  - [Check](#check)
+  - [Completion](#completion)
+- [Performance](#performance)
+- [Make Recipes](#make-recipes)
+- [How to Release](#how-to-release)
 
 # Installation
 
@@ -178,47 +179,65 @@ Options:
 
 [back^](#index)
 
-| Command | Mean [ms] | Min [ms] | Max [ms] | Relative |
-|:---|---:|---:|---:|---:|
-| `cnj check [ input_size=10^0 ]` | 42.8 ± 14.0 | 30.4 | 76.1 | 1.01 ± 0.43 |
-| `cnj check [ input_size=10^1 ]` | 42.3 ± 11.6 | 31.9 | 75.9 | 1.00 |
-| `cnj check [ input_size=10^2 ]` | 55.4 ± 18.1 | 34.1 | 82.1 | 1.31 ± 0.56 |
-| `cnj check [ input_size=10^3 ]` | 55.9 ± 22.2 | 33.1 | 97.8 | 1.32 ± 0.64 |
-| `cnj check [ input_size=10^4 ]` | 98.7 ± 19.3 | 78.1 | 122.7 | 2.33 ± 0.79 |
-| `cnj check [ input_size=10^5 ]` | 500.2 ± 17.4 | 481.4 | 530.9 | 11.82 ± 3.28 |
-| `cnj check [ input_size=10^6 ]` | 4852.7 ± 134.3 | 4671.5 | 5174.4 | 114.71 ± 31.72 |
+| Command                         |      Mean [ms] | Min [ms] | Max [ms] |       Relative |
+| :------------------------------ | -------------: | -------: | -------: | -------------: |
+| `cnj check [ input_size=10^0 ]` |    42.8 ± 14.0 |     30.4 |     76.1 |    1.01 ± 0.43 |
+| `cnj check [ input_size=10^1 ]` |    42.3 ± 11.6 |     31.9 |     75.9 |           1.00 |
+| `cnj check [ input_size=10^2 ]` |    55.4 ± 18.1 |     34.1 |     82.1 |    1.31 ± 0.56 |
+| `cnj check [ input_size=10^3 ]` |    55.9 ± 22.2 |     33.1 |     97.8 |    1.32 ± 0.64 |
+| `cnj check [ input_size=10^4 ]` |    98.7 ± 19.3 |     78.1 |    122.7 |    2.33 ± 0.79 |
+| `cnj check [ input_size=10^5 ]` |   500.2 ± 17.4 |    481.4 |    530.9 |   11.82 ± 3.28 |
+| `cnj check [ input_size=10^6 ]` | 4852.7 ± 134.3 |   4671.5 |   5174.4 | 114.71 ± 31.72 |
 
 # Make Recipes
 
 [back^](#index)
 
 ```
-bash-all             Run all bash tests
-bash-check           Check format bash code
-bash-fmt             Format bash code
-bash-lint            Check lint bash code
-doc-changelog        Write CHANGELOG.mode
-doc-readme           Write README.md
-help                 Display this help screen
-rs-audit             Audit Cargo.lock
-rs-audit-fix         Update Cargo.toml to fix vulnerable dependency requirement
-rs-build             Build binary
-rs-cargo-deps        Install cargo dependencies
-rs-check             Run check
-rs-dev               Run check in watch mode
-rs-doc               Open app documentation
-rs-fix               Fix rust code
-rs-fmt               Format rust code
-rs-fmt-fix           Format fix rust code
-rs-install           Install binary
-rs-lint              Lint rust code
-rs-lint-fix          Fix lint rust code
-rs-outdated          Display when dependencies are out of date
-rs-tests             Run tests
-rs-uninstall         Uninstall binary
-rs-update-cargo      Update dependencies
-typos                Check typos
-typos-fix            Fix typos
-yaml-fmt             Format yaml code
-yaml-lint            Check lint yaml code
+bash-all               Run all bash tests
+bash-check             Check format bash code
+bash-deps              Install bash dependencies
+bash-fmt               Format bash code
+bash-lint              Check lint bash code
+comments-tidy          Tidy comments within code
+doc-changelog          Write CHANGELOG.mode
+doc-readme             Write README.md
+dprint-check           Dprint check
+dprint-fmt             Dprint format
+help                   Display this help screen
+makefile-descriptions  Check if all Makefile rules have descriptions
+rs-audit               Audit Cargo.lock
+rs-audit-fix           Update Cargo.toml to fix vulnerable dependency requirement
+rs-build               Build binary
+rs-cargo-deps          Install cargo dependencies
+rs-check               Run check
+rs-dev                 Run check in watch mode
+rs-doc                 Open app documentation
+rs-fix                 Fix rust code
+rs-fmt                 Format rust code
+rs-fmt-fix             Format fix rust code
+rs-install             Install binary
+rs-lint                Lint rust code
+rs-lint-fix            Fix lint rust code
+rs-outdated            Display when dependencies are out of date
+rs-tests               Run tests
+rs-uninstall           Uninstall binary
+rs-update-cargo        Update dependencies
+rs-update-rustup       Update rust
+typos                  Check typos
+typos-fix              Fix typos
 ```
+
+# How to Release
+
+[back^](#index)
+
+To generate a new version, you need to follow these steps:
+
+1. In the `main` branch, you must bump the version inside the `Cargo.toml` file.
+2. Run `make rs-check` so that the version is changed in the `Cargo.lock` file.
+3. Run the command `git add -A && git commit -m "release: bump version"`.
+4. Run the command `git tag -a <your.new.version> -m "version <your.new.version>"`.
+5. Run the command `make doc-changelog && make doc-readme`.
+6. Run the command `git add -A && git commit -m "release: <your.new.version>"`.
+7. Run `git push` to `main`.

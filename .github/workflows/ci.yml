@@ -7,20 +7,28 @@ on:
     branches:
       - main
   schedule:
-    - cron: '00 01 * * *'
+    - cron: "00 01 * * *"
 permissions:
   contents: read
 jobs:
-  spell-check:
-    name: 'spell-check'
+  makefile-descriptions:
+    name: "makefile-descriptions"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Check Makefile
+        run: make makefile-descriptions
+  typos:
+    name: "typos"
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: Check spelling
         uses: crate-ci/typos@master
-  bash-lint:
-    name: '[bash] lint'
+  bash:
+    name: "bash"
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -33,8 +41,15 @@ jobs:
         run: make bash-check
       - name: Check lint bash code ${{ matrix.os }}
         run: make bash-lint
+  dprint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: dprint-check-action
+        uses: dprint/check@v2.2
   rustfmt:
-    name: '[rust] rustfmt'
+    name: "[rust] rustfmt"
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -47,7 +62,7 @@ jobs:
       - name: Check formatting
         run: cargo fmt --all --check
   clippy:
-    name: '[rust] clippy'
+    name: "[rust] clippy"
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -61,7 +76,7 @@ jobs:
         run: |
           cargo clippy --workspace --all-targets --all-features --no-deps -- -D warnings
   rust-test:
-    name: '[rust] test ${{ matrix.build }}'
+    name: "[rust] test ${{ matrix.build }}"
     env:
       # For some builds, we use cross to test on 32-bit and big-endian
       # systems.
