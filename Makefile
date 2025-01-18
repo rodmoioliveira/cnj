@@ -2,21 +2,41 @@
 
 help: ## Display this help screen
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | \
-		awk 'BEGIN {FS = ":.*?## "}; \
-		{printf "%-20s %s\n", $$1, $$2}' | \
-		LC_ALL=C sort
+		sed -E 's/:.+## /@/g' | \
+		LC_ALL=C sort -t@ -k1,1 | \
+		column -s@ -t
 
-doc-readme: ## Write README.md
-	@./dev/doc-readme.sh
+bash-all: bash-fmt bash-check bash-lint ## Run all bash tests
+
+bash-check: ## Check format bash code
+	@find . -type f -name "*.sh" -not -path "./target/*" | xargs shfmt -i 2 -d
+
+bash-deps: ## Install bash dependencies
+	@sudo apt-get install -y moreutils
+
+bash-fmt: ## Format bash code
+	@find . -type f -name "*.sh" -not -path "./target/*" | xargs shfmt -i 2 -w
+
+bash-lint: ## Check lint bash code
+	@find . -type f -name "*.sh" -not -path "./target/*" | xargs shellcheck -o all
+
+comments-tidy: ## Tidy comments within code
+	@./dev/comments-tidy.sh
 
 doc-changelog: ## Write CHANGELOG.mode
 	@git cliff -o CHANGELOG.md
 
-typos: ## Check typos
-	@typos
+doc-readme: ## Write README.md
+	@./dev/doc-readme.sh
 
-typos-fix: ## Fix typos
-	@typos -w
+dprint-check: ## Dprint check
+	@dprint check
+
+dprint-fmt: ## Dprint format
+	@dprint fmt
+
+makefile-descriptions: ## Check if all Makefile rules have descriptions
+	@./dev/makefile-descriptions.sh
 
 rs-audit: ## Audit Cargo.lock
 	@cargo audit
@@ -30,16 +50,15 @@ rs-build: ## Build binary
 rs-cargo-deps: ## Install cargo dependencies
 	@cargo install --locked cargo-outdated
 	@cargo install cargo-audit --features=fix
-	@cargo install cargo-udeps --locked
 	@cargo install cargo-watch
 	@cargo install typos-cli
 	@rustup component add clippy
 
-rs-dev: ## Run check in watch mode
-	@cargo watch -c
-
 rs-check: ## Run check
 	@cargo check
+
+rs-dev: ## Run check in watch mode
+	@cargo watch -c
 
 rs-doc: ## Open app documentation
 	@cargo doc --open
@@ -56,9 +75,6 @@ rs-fmt-fix: ## Format fix rust code
 rs-install: ## Install binary
 	@cargo install --path .
 
-rs-uninstall: ## Uninstall binary
-	@cargo uninstall
-
 rs-lint: ## Lint rust code
 	@cargo clippy --workspace --all-targets --all-features --no-deps -- -D warnings
 
@@ -71,36 +87,33 @@ rs-outdated: ## Display when dependencies are out of date
 rs-tests: ## Run tests
 	@cargo test
 
+rs-uninstall: ## Uninstall binary
+	@cargo uninstall
+
 rs-update-cargo: ## Update dependencies
 	@cargo update
 
-rs-update-rustup:
+rs-update-rustup: ## Update rust
 	@rustup update
 
-bash-all: bash-fmt bash-check bash-lint ## Run all bash tests
+typos: ## Check typos
+	@typos
 
-bash-fmt: ## Format bash code
-	@find . -type f -name "*.sh" | xargs shfmt -i 2 -w
+typos-fix: ## Fix typos
+	@typos -w
 
-bash-check: ## Check format bash code
-	@find . -type f -name "*.sh" | xargs shfmt -i 2 -d
-
-bash-lint: ## Check lint bash code
-	@find . -type f -name "*.sh" | xargs shellcheck -o all
-
-yaml-fmt: ## Format yaml code
-	@find . -type f -regex ".*.ya?ml" | xargs yamlfmt
-
-yaml-lint: ## Check lint yaml code
-	@find . -type f -regex ".*.ya?ml" | xargs yamllint
-
-.PHONY: help
 .PHONY: bash-all
 .PHONY: bash-check
+.PHONY: bash-deps
 .PHONY: bash-fmt
 .PHONY: bash-lint
+.PHONY: comments-tidy
 .PHONY: doc-changelog
 .PHONY: doc-readme
+.PHONY: dprint-check
+.PHONY: dprint-fmt
+.PHONY: help
+.PHONY: makefile-descriptions
 .PHONY: rs-audit
 .PHONY: rs-audit-fix
 .PHONY: rs-build
@@ -115,12 +128,9 @@ yaml-lint: ## Check lint yaml code
 .PHONY: rs-lint
 .PHONY: rs-lint-fix
 .PHONY: rs-outdated
-.PHONY: rs-run
 .PHONY: rs-tests
 .PHONY: rs-uninstall
 .PHONY: rs-update-cargo
 .PHONY: rs-update-rustup
 .PHONY: typos
 .PHONY: typos-fix
-.PHONY: yaml-fmt
-.PHONY: yaml-lint

@@ -39,8 +39,8 @@ jobs:
       version: ${{ env.VERSION }}
       bin_name: "cnj"
   build-release:
-    name: '[rust] build-release ${{ matrix.target }}'
-    needs: ['create-release']
+    name: "[rust] build-release ${{ matrix.target }}"
+    needs: ["create-release"]
     runs-on: ${{ matrix.os }}
     env:
       # For some builds, we use cross to test on 32-bit and big-endian

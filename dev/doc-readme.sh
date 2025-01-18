@@ -109,11 +109,16 @@ $(cat benches/results.md)
 \`\`\`
 $(make help)
 \`\`\`
+
+# How to Release
+
+$(cat HOW_TO_RELEASE.md)
 EOF
 
   sed -i -E '/^make\[[0-9]/d' README.md
   sed -i -E 's/cargo run --/cnj/g' README.md
   backlink
+  dprint fmt README.md CHANGELOG.md
 }
 
 trap readme EXIT
