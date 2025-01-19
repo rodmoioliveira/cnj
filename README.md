@@ -35,7 +35,7 @@ in order to compile it. To build `cnj`, run:
 ```
 git clone git@github.com:rodmoioliveira/cnj.git
 cd cnj
-make install
+make rs-build
 ```
 
 # Commands
