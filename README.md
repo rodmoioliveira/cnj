@@ -1,6 +1,6 @@
 # cnj
 
-cnj is a CLI for [checking](https://github.com/rodmoioliveira/cnj#check)
+cnj is a CLI for [checking](#check)
 and manipulating [CNJ numbers](https://atos.cnj.jus.br/atos/detalhar/atos-normativos?documento=119).
 
 [![Build status](https://github.com/rodmoioliveira/cnj/workflows/ci/badge.svg)](https://github.com/rodmoioliveira/cnj/actions)
