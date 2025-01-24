@@ -1,5 +1,32 @@
 # Changelog
 
+## [0.5.0](https://github.com/rodmoioliveira/cnj/compare/0.4.0...0.5.0) - 2025-01-24
+
+[52ac123](https://github.com/rodmoioliveira/cnj/commit/52ac1238a5d7c6c041aad0f5815061d772320c4e)...[e9927cf](https://github.com/rodmoioliveira/cnj/commit/e9927cfd6988de0aa5701b18db4213476e753699)
+
+### Dependencies
+
+- [d2b8753](https://github.com/rodmoioliveira/cnj/commit/d2b87536d0a8acfb6bbd78a790e775f338186169) - Bump serde_json from 1.0.135 to 1.0.137
+- [aec6bbe](https://github.com/rodmoioliveira/cnj/commit/aec6bbef8105bd9c9bd5a38489ce49ae8603b290) - Bump clap from 4.5.26 to 4.5.27
+
+### Documentation
+
+- [e1766b2](https://github.com/rodmoioliveira/cnj/commit/e1766b2a96d7f27c8374ff1eafe244c1514862f3) - Fix typo in Makefile
+- [1426f51](https://github.com/rodmoioliveira/cnj/commit/1426f51dcd0e3ffe0b475b6f45f88f3bde746a87) - Fix building directive
+- [24241b9](https://github.com/rodmoioliveira/cnj/commit/24241b9ec8cc8b64e782146067816e718cdfa6d1) - Update link in README
+
+### Features
+
+- [e9927cf](https://github.com/rodmoioliveira/cnj/commit/e9927cfd6988de0aa5701b18db4213476e753699) - Add hacker gh-page theme
+
+### Miscellaneous Tasks
+
+- [e7d23de](https://github.com/rodmoioliveira/cnj/commit/e7d23de932c1c3c96dbe2234e590a8e8d46988c0) - Rename HOW_TO_RELEASE to RELEASE
+
+### Releases
+
+- [07fb0a9](https://github.com/rodmoioliveira/cnj/commit/07fb0a933a21d06c9c3486ae673b8f42bfeb622d) - 0.4.0
+
 ## [0.4.0](https://github.com/rodmoioliveira/cnj/compare/0.3.8...0.4.0) - 2025-01-18
 
 [a58feeb](https://github.com/rodmoioliveira/cnj/commit/a58feeb8be9fecf547011fcd535a4352014c5185)...[52ac123](https://github.com/rodmoioliveira/cnj/commit/52ac1238a5d7c6c041aad0f5815061d772320c4e)
