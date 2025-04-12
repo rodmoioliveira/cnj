@@ -14,6 +14,7 @@ and manipulating [CNJ numbers](https://atos.cnj.jus.br/atos/detalhar/atos-normat
 - [Subcommands](#subcommands)
   - [Check](#check)
   - [Completion](#completion)
+- [Dependencies](#dependencies)
 - [Performance](#performance)
 - [Make Recipes](#make-recipes)
 - [How to Release](#how-to-release)
@@ -174,6 +175,22 @@ Options:
   -h, --help
           Print help (see a summary with '-h')
 ```
+
+# Dependencies
+
+[back^](#index)
+
+- [clap](https://crates.io/crates/clap) - A simple to use, efficient, and full-featured Command Line Argument Parser
+- [clap_complete](https://crates.io/crates/clap_complete) - Generate shell completion scripts for your clap::Command
+- [csv](https://crates.io/crates/csv) - Fast CSV parsing with support for serde.
+- [grep-cli](https://crates.io/crates/grep-cli) - Utilities for search oriented command line applications.
+- [libc](https://crates.io/crates/libc) - Raw FFI bindings to platform libraries like libc.
+- [once_cell](https://crates.io/crates/once_cell) - Single assignment cells and lazy values.
+- [rayon](https://crates.io/crates/rayon) - Simple work-stealing parallelism for Rust
+- [regex](https://crates.io/crates/regex) - An implementation of regular expressions for Rust. This implementation uses
+- [serde](https://crates.io/crates/serde) - A generic serialization/deserialization framework
+- [serde_json](https://crates.io/crates/serde_json) - A JSON serialization file format
+- [tokio](https://crates.io/crates/tokio) - An event-driven, non-blocking I/O platform for writing asynchronous I/O
 
 # Performance
 

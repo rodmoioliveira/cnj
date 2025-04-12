@@ -100,6 +100,23 @@ cargo run -- completion --help
 $(cargo run -- completion --help)
 \`\`\`
 
+# Dependencies
+
+$(
+    paste -d '@' \
+      <(
+        yq '.dependencies | keys[]' Cargo.toml |
+          sort |
+          sed -E 's@(.+)@- [\1](https://crates.io/crates/\1)@g'
+      ) \
+      <(
+        yq '.dependencies | keys[]' Cargo.toml |
+          sort |
+          xargs -n1 bash -c 'cargo info $0 2>/dev/null | sed -n "2p"'
+      ) |
+      sed 's/@/ - /g'
+  )
+
 # Performance
 
 $(cat benches/results.md)
