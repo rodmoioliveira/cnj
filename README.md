@@ -99,14 +99,14 @@ Arguments:
 Options:
   -o, --output <OUTPUT>
           Change the output format
-          
-          [default: table]
 
           Possible values:
           - csv:      [alias = C] output in Csv
           - json:     [alias = J] output in Json
           - table:    [alias = T] output in Table
           - vertical: [alias = V] output in Vertical
+          
+          [default: table]
 
   -h, --help
           Print help (see a summary with '-h')

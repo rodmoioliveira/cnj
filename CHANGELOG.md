@@ -1,5 +1,94 @@
 # Changelog
 
+## [0.6.0](https://github.com/rodmoioliveira/cnj/compare/0.5.0...0.6.0) - 2025-09-25
+
+[e9927cf](https://github.com/rodmoioliveira/cnj/commit/e9927cfd6988de0aa5701b18db4213476e753699)...[65e0f37](https://github.com/rodmoioliveira/cnj/commit/65e0f37e32ddabc578921e1ad21d48508ec0a944)
+
+### CI
+
+- [27c444c](https://github.com/rodmoioliveira/cnj/commit/27c444c81f357e79a36d8cc2495cd09f9247eb5c) - Remove webi.sh
+- [c917f01](https://github.com/rodmoioliveira/cnj/commit/c917f01450c561ed387f4ce797b6d5bfea779004) - Change schedule
+
+### Dependencies
+
+- [01dae68](https://github.com/rodmoioliveira/cnj/commit/01dae68036536e7c15e082abc374e96847602820) - Bump clap_complete from 4.5.42 to 4.5.43
+- [4c1b796](https://github.com/rodmoioliveira/cnj/commit/4c1b79625d23d517e9a57c7dcf401abac079469e) - Bump serde_json from 1.0.137 to 1.0.138
+- [ee45fb5](https://github.com/rodmoioliveira/cnj/commit/ee45fb5d2a077032f3446720368abea595ec2e00) - Bump clap_complete from 4.5.43 to 4.5.44
+- [aa4c6dc](https://github.com/rodmoioliveira/cnj/commit/aa4c6dc95bc7d88161792e8d24c52e5b26688830) - Bump clap from 4.5.27 to 4.5.28
+- [1539059](https://github.com/rodmoioliveira/cnj/commit/1539059efee0dea7dd7ee768ab710e91831bfca6) - Bump once_cell from 1.20.2 to 1.20.3
+- [15e028c](https://github.com/rodmoioliveira/cnj/commit/15e028c3ba6fd2db789da326b81412b5195379b4) - Bump clap from 4.5.28 to 4.5.29
+- [ad78e0d](https://github.com/rodmoioliveira/cnj/commit/ad78e0d07873a2f062579de738b2b45d64efc458) - Bump clap from 4.5.29 to 4.5.30
+- [3e3dc9d](https://github.com/rodmoioliveira/cnj/commit/3e3dc9da958b3f4d0e192edb68d7fdc938900799) - Bump clap_complete from 4.5.44 to 4.5.45
+- [141700b](https://github.com/rodmoioliveira/cnj/commit/141700bd250fc94767c6b08228db21e0b985dc5d) - Bump serde from 1.0.217 to 1.0.218
+- [4b20ffb](https://github.com/rodmoioliveira/cnj/commit/4b20ffb3e2754c13ce763c9f936af5138090b3cd) - Bump serde_json from 1.0.138 to 1.0.139
+- [5a29d81](https://github.com/rodmoioliveira/cnj/commit/5a29d81be31c11a97bf252cc3f1831829b698b13) - Bump libc from 0.2.169 to 0.2.170
+- [da929b8](https://github.com/rodmoioliveira/cnj/commit/da929b8732822d450d85eb5bfb0138afbb9cd60c) - Bump clap from 4.5.30 to 4.5.31
+- [95323eb](https://github.com/rodmoioliveira/cnj/commit/95323eb8338f48bfa2cbd7a8a5572ae7824c1834) - Bump clap_complete from 4.5.45 to 4.5.46
+- [6602c5e](https://github.com/rodmoioliveira/cnj/commit/6602c5e29b96d7bc0504824891640c3b12c9c008) - Bump chrono from 0.4.39 to 0.4.40
+- [5193970](https://github.com/rodmoioliveira/cnj/commit/519397040061c7fdd76c539e376f158b414ada96) - Bump serde_json from 1.0.139 to 1.0.140
+- [fd25ecd](https://github.com/rodmoioliveira/cnj/commit/fd25ecd6c818f57f53628446965aeab7894b9401) - Bump serde from 1.0.218 to 1.0.219
+- [ef1c2e2](https://github.com/rodmoioliveira/cnj/commit/ef1c2e2015a3a0a3e84c941c33102334e08a06c0) - Bump tokio from 1.43.0 to 1.44.0
+- [6de1c2d](https://github.com/rodmoioliveira/cnj/commit/6de1c2d1934333c012cc802df3baa0e361473b2c) - Bump once_cell from 1.20.3 to 1.21.0
+- [0f88d6b](https://github.com/rodmoioliveira/cnj/commit/0f88d6b988f7bd340d64da1d33b6da45bd3f4d99) - Bump clap from 4.5.31 to 4.5.32
+- [42cb487](https://github.com/rodmoioliveira/cnj/commit/42cb487ce864f2fedd3bf330fc05d22280130746) - Bump libc from 0.2.170 to 0.2.171
+- [f7ba868](https://github.com/rodmoioliveira/cnj/commit/f7ba86863f4764c73331fdae2ba77cc790702278) - Bump once_cell from 1.21.0 to 1.21.1
+- [ea29209](https://github.com/rodmoioliveira/cnj/commit/ea292095c549da548c723d1f80547887918dea71) - Bump tokio from 1.44.0 to 1.44.1
+- [8e27c43](https://github.com/rodmoioliveira/cnj/commit/8e27c4361633f36c8ff44e8c1572ad9bb57d6729) - Bump clap_complete from 4.5.46 to 4.5.47
+- [21f924a](https://github.com/rodmoioliveira/cnj/commit/21f924a5b930d14228bc70b457b8c48977e438b1) - Bump clap from 4.5.32 to 4.5.34
+- [1a1d76d](https://github.com/rodmoioliveira/cnj/commit/1a1d76d4119a9d31576799a23de87028a1b90d75) - Bump once_cell from 1.21.1 to 1.21.3
+- [91f6ba0](https://github.com/rodmoioliveira/cnj/commit/91f6ba02252b486d24f993d58450a46425275a54) - Bump clap from 4.5.34 to 4.5.35
+- [2e2bc0c](https://github.com/rodmoioliveira/cnj/commit/2e2bc0c026a8a6462907463cc74e40c5dfddb56d) - Bump tokio from 1.44.1 to 1.44.2
+- [70d1b59](https://github.com/rodmoioliveira/cnj/commit/70d1b59ea001a1d73e9353877b0241b285463c53) - Bump clap from 4.5.35 to 4.5.36
+- [2b95955](https://github.com/rodmoioliveira/cnj/commit/2b9595503960f2dc00fd66140511eabe3622f60b) - Bump libc from 0.2.171 to 0.2.172
+- [a7fef81](https://github.com/rodmoioliveira/cnj/commit/a7fef810b2e402cb5574c5a3a5b8b0bbf44e45fc) - Bump clap_complete from 4.5.47 to 4.5.48
+- [032240b](https://github.com/rodmoioliveira/cnj/commit/032240be040794411e042844d92cbced1af29ab5) - Bump clap from 4.5.36 to 4.5.37
+- [eb22afd](https://github.com/rodmoioliveira/cnj/commit/eb22afd4b81ad843ee18e3dbf0c9a2d68f31f74d) - Bump chrono from 0.4.40 to 0.4.41
+- [030e83e](https://github.com/rodmoioliveira/cnj/commit/030e83ee135a5d9e3c88bcc7b4be3586dc9dbead) - Bump tokio from 1.44.2 to 1.45.0
+- [005916d](https://github.com/rodmoioliveira/cnj/commit/005916d5ee513dc85cc59220bd529a87d7e6cc0a) - Bump clap_complete from 4.5.48 to 4.5.50
+- [d70656a](https://github.com/rodmoioliveira/cnj/commit/d70656a0442b039abf442064311a9582b14484b1) - Bump clap from 4.5.37 to 4.5.38
+- [24741bd](https://github.com/rodmoioliveira/cnj/commit/24741bd41e2129e033d755f4c84127bdde6c374b) - Bump tokio from 1.45.0 to 1.45.1
+- [e9ec100](https://github.com/rodmoioliveira/cnj/commit/e9ec100917334bf2ca0b2beec00586dde30f1177) - Bump clap_complete from 4.5.50 to 4.5.52
+- [4bd4f17](https://github.com/rodmoioliveira/cnj/commit/4bd4f1772ead78afea798d9451c026ec983503f8) - Bump clap from 4.5.38 to 4.5.39
+- [aa5e767](https://github.com/rodmoioliveira/cnj/commit/aa5e7676cc3833c0e486588482f33073a8690b94) - Bump clap from 4.5.39 to 4.5.40
+- [676b5c9](https://github.com/rodmoioliveira/cnj/commit/676b5c9d5fc41579237987c5a7a79183da37d8b4) - Bump clap_complete from 4.5.52 to 4.5.54
+- [86d6a2e](https://github.com/rodmoioliveira/cnj/commit/86d6a2e16df29a9da25d2879383a2b25c7271215) - Bump libc from 0.2.172 to 0.2.173
+- [da928e3](https://github.com/rodmoioliveira/cnj/commit/da928e3c8bbc7b2639bbb0d97864137ec40d698b) - Bump libc from 0.2.173 to 0.2.174
+- [32f9808](https://github.com/rodmoioliveira/cnj/commit/32f980834e07a0324cbd91fa9c88aca388ae07a3) - Bump tokio from 1.45.1 to 1.46.1
+- [602942e](https://github.com/rodmoioliveira/cnj/commit/602942e40f612b38a0cf3b7672133c0618e9ae9d) - Bump clap from 4.5.40 to 4.5.41
+- [356df46](https://github.com/rodmoioliveira/cnj/commit/356df4600002617d10c6e55ecfa75a7dac611ec7) - Bump serde_json from 1.0.140 to 1.0.142
+- [2b02125](https://github.com/rodmoioliveira/cnj/commit/2b02125d0761021d91bf181d0bfc9993fae582cd) - Bump tokio from 1.46.1 to 1.47.1
+- [97415d9](https://github.com/rodmoioliveira/cnj/commit/97415d9c4d0b75f3b2c413872e8e653566b31b2a) - Bump clap_complete from 4.5.54 to 4.5.55
+- [2a93f8f](https://github.com/rodmoioliveira/cnj/commit/2a93f8f6e40779667326b7fa3fb8bfaab9c4615e) - Bump dprint/check from 2.2 to 2.3
+- [d2491db](https://github.com/rodmoioliveira/cnj/commit/d2491db75a2f30d0393caa99f861d9ea8799f115) - Bump clap_complete from 4.5.55 to 4.5.56
+- [74d7a7f](https://github.com/rodmoioliveira/cnj/commit/74d7a7ff2b36d16b542253c8fd4ae61ec9d358c9) - Bump libc from 0.2.174 to 0.2.175
+- [cdff1d5](https://github.com/rodmoioliveira/cnj/commit/cdff1d5d9156ee8e960b42d7773b1695e4eb4233) - Bump clap_complete from 4.5.56 to 4.5.57
+- [1b273b0](https://github.com/rodmoioliveira/cnj/commit/1b273b0fb3a23ce2864e058da82ef8cfa8a6cd38) - Bump serde_json from 1.0.142 to 1.0.143
+- [ae3721c](https://github.com/rodmoioliveira/cnj/commit/ae3721c38bb2c50e9592dc23f7359713d84e9bb5) - Bump rayon from 1.10.0 to 1.11.0
+- [e0d89f0](https://github.com/rodmoioliveira/cnj/commit/e0d89f0ebe6098c9cef4dd814242226bd09b0e3b) - Bump clap from 4.5.41 to 4.5.45
+- [b0efe50](https://github.com/rodmoioliveira/cnj/commit/b0efe5081b04a80880b88879729fa99747c9ea27) - Bump regex from 1.11.1 to 1.11.2
+- [e664d01](https://github.com/rodmoioliveira/cnj/commit/e664d01eb5eac2dc4275103457299574b8ca3bcd) - Bump slab from 0.4.10 to 0.4.11
+- [a042f4e](https://github.com/rodmoioliveira/cnj/commit/a042f4ed8f5fd0646b6ba9b4569af3703e52121f) - Bump chrono from 0.4.41 to 0.4.42
+- [87dbcdd](https://github.com/rodmoioliveira/cnj/commit/87dbcddd0ff73d4fa7bd3fec9df35a535d243939) - Bump clap from 4.5.45 to 4.5.47
+- [b6e5f7f](https://github.com/rodmoioliveira/cnj/commit/b6e5f7f2103a2fe3b4d2dc7f42cd7140efca7c0e) - Bump serde_json from 1.0.143 to 1.0.145
+- [4a73c9f](https://github.com/rodmoioliveira/cnj/commit/4a73c9fee23f8b23c58ef784c0e4a524969edda5) - Bump clap_complete from 4.5.57 to 4.5.58
+
+### Documentation
+
+- [dd5748b](https://github.com/rodmoioliveira/cnj/commit/dd5748bd34f68cd2369852f112c6c5fcb6478184) - Add Dependencies section to README
+
+### Features
+
+- [7fe1fc8](https://github.com/rodmoioliveira/cnj/commit/7fe1fc8bc512b4ead6575218934523cf958d9163) - Update deps
+
+### Miscellaneous Tasks
+
+- [2cebed8](https://github.com/rodmoioliveira/cnj/commit/2cebed8b72faa9ae1b6574e7f5b6a3d6139e2dac) - Remove hacker gh-page theme
+
+### Releases
+
+- [9803b35](https://github.com/rodmoioliveira/cnj/commit/9803b35fd6339137c7ba9d74f5f43bb97d9d18e1) - 0.5.0
+- [65e0f37](https://github.com/rodmoioliveira/cnj/commit/65e0f37e32ddabc578921e1ad21d48508ec0a944) - Bump version
+
 ## [0.5.0](https://github.com/rodmoioliveira/cnj/compare/0.4.0...0.5.0) - 2025-01-24
 
 [52ac123](https://github.com/rodmoioliveira/cnj/commit/52ac1238a5d7c6c041aad0f5815061d772320c4e)...[e9927cf](https://github.com/rodmoioliveira/cnj/commit/e9927cfd6988de0aa5701b18db4213476e753699)
