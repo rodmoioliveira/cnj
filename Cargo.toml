@@ -23,7 +23,7 @@ clap = { version = "4.5.51", features = ["derive", "env", "cargo", "help"] }
 clap_complete = "4.5.61"
 csv = "1.4.0"
 grep-cli = "0.1.12"
-libc = "0.2.177"
+libc = "0.2.178"
 once_cell = "1.21.3"
 rayon = "1.11.0"
 regex = "1.12.2"
