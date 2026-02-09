@@ -19,7 +19,7 @@ name = "cnj"
 path = "src/main.rs"
 
 [dependencies]
-clap = { version = "4.5.56", features = ["derive", "env", "cargo", "help"] }
+clap = { version = "4.5.57", features = ["derive", "env", "cargo", "help"] }
 clap_complete = "4.5.65"
 csv = "1.4.0"
 grep-cli = "0.1.12"
